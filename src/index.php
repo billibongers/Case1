@@ -276,58 +276,80 @@ $(".date").datepicker();
 
 <div class="downleft">
   <div class="picture">
-  <img src="img/logo2.png" width="700" height="330" />
+  </br>
+  </br>
+  <img src="img/logo2.png" width="500" height="250" />
   </div>
-  <div class="field">
-    <div class="signup">Sign Up</div>
-	<div class="free">It's free, and always will be</div>
-	<div class="text">
-	<form  method="POST">
-	  	<div class="textleft">FirstName:</div>
-		<div class="textright"><input name="fname" type="text" class="textfield" maxlength="10" value="<?php echo $fname; ?>"/><font color="Red"><?php echo $vfname; ?> </font>
-		</div>
-		<div class="textleft">LastName:</div>
-		<div class="textright"><input name="lname" type="text" class="textfield" value="<?php echo $lname; ?>"/><font color="Red"><?php echo $vlname; ?> </font>
-		</div>
-		<div class="textleft">UserName:</div>
-		<div class="textright"><input name="login" type="text" class="textfield" value="<?php echo $login; ?>"/><font color="Red"><?php echo $vlogin; ?> </font><font color="Red"> <?php echo $u; ?></font>
-		</div>
-		<div class="textleft">Password:</div>
-		<div class="textright"><input name="password2" type="password" class="textfield"value="<?php echo $password; ?>"/><font color="Red"><?php echo $vpassword; ?> </font>
-		</div>
-		<div class="textleft">Retype Password:</div>
-		<div class="textright"><input name="cpassword" type="password" class="textfield"value="<?php echo $cpassword; ?>"/><font color="Red"><?php echo $vcpassword; ?> </font><font color="Red"><?php echo $a; ?> </font>
-		</div>
-		<div class="textleft">Address:</div>
-		<div class="textright"><input name="address" type="text" class="textfield" value="<?php echo $address; ?>"/><font color="Red"><?php echo $vaddress; ?> </font>
-		</div>
-		<div class="textleft">Contact Number:</div>
-		<div class="textright"><input name="cnumber" type="text" class="textfield" maxlength="11" size="40" value="<?php echo $cnumber; ?>" /><font color="Red"><?php echo $vcnumber; ?> </font>
-		<input name="propic" id="dadded" type="hidden" value="upload/p.jpg" /></div>
-		<div class="textleft">Email:</div>
-		<div class="textright"><input name="email" type="text" class="textfield" value="<?php echo $email; ?>"><font color="Red"><?php echo $vemail; ?> </font><font color="Red"><?php echo $e; ?> </font>
-		</div>
-		<div class="textleft">Gender:</div>
-		<div class="textright1">
-			<div class="input-container">
-			  <select name="gender" id="gender" class="textfield1"><?php echo $vgender; ?> 
-                <option >Female</option>
-                <option >Male</option>
-              </select><br />
-			</div>
-		</div>
-		<div class="textleft">Birth Day:</div>
-		<div class="textright"><input name="month" type="text" class="date"></div>
-		<div class="input-container">
-	
+  	<div class="field">
+	    <div class="signup">Sign Up</div>
+	    <div>
+			<form  method="POST">
+				<div class="form-group">
+					<label for="fname">First Name:</label>
+					<input name="fname" type="text" class="form-control" maxlength="10" value="<?php echo $fname; ?>">
+				</div>
 
-		<div class="textright">
-		  <input type="submit" name="Submit" value="Sign Up" class="greenButton1" />
-	
+				<div class="form-group">
+					<label for="lname">Last Name:</label>
+					<input name="lname" type="text" class="form-control" value="<?php echo $lname; ?>">
+				</div>
+
+				<div class="form-group">
+					<label for="login">User Name:</label>
+					<input name="login" type="text" class="form-control" value="<?php echo $login; ?>">
+				</div>
+
+				<div class="form-group">
+					<label for="password2">Password:</label>
+					<input name="password2" type="password" class="form-control" value="<?php echo $password; ?>">
+				</div>
+
+				<div class="form-group">
+					<label for="cpassword">Retype Password:</label>
+					<input name="cpassword" type="password" class="form-control" value="<?php echo $cpassword; ?>">
+				</div>
+
+				<div class="form-group">
+					<label for="address">Address:</label>
+					<input name="address" type="text" class="form-control" value="<?php echo $address; ?>">
+				</div>
+
+				<div class="form-group">
+					<label for="cnumber">Contact Number:</label>
+					<input name="cnumber" type="text" class="form-control" maxlength="11" size="40" value="<?php echo $cnumber; ?>">
+					<input name="propic" id="dadded" type="hidden" value="upload/p.jpg" />
+				</div>
+
+
+				<div class="form-group">
+					<label for="email">Email:</label>
+					<input name="email" type="email" class="form-control" value="<?php echo $email; ?>">
+				</div>
+
+				<div class="form-group">
+					<label for="gender">Gender:</label>
+					<div class="textright1">
+						<div class="input-container">
+					  		<select name="gender" id="gender" class="form-control"><?php echo $vgender; ?> 
+		               			<option >Female</option>
+		                		<option >Male</option>
+		              		</select>
+		              		<br />
+						</div>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="bday">Brith Day:</label>
+					<input name="month" type="text" class="date">
+				</div>
+
+				<div class="form-group">
+				  <button type="submit" name="Submit" value="Sign up" class="btn btn-default">Sign Up</button>
+				</div>
+			 
+			</form>
 		</div>
-		 
-		</form>
-		 </div>
-		 </div>
+	</div>
 </body>
 </html>
