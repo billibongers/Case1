@@ -8,7 +8,7 @@
 		if(get_magic_quotes_gpc()) {
 			$str = stripslashes($str);
 		}
-		return mysql_real_escape_string($str);
+		return $str;
 	}
 
 $messages = clean($_POST['message']);
@@ -18,9 +18,9 @@ $sql="INSERT INTO comment (comment,date_created, member_id)
 VALUES
 ('$messages','".strtotime(date("Y-m-d H:i:s"))."','$poster')";
 
-if (!mysql_query($sql,$con))
+if (!mysqli_query($mysqli,$sql))
   {
-  die('Error: ' . mysql_error());
+  die('Error: ' . mysqli_error($mysqli));
   }
 header("location: Home.php");
 exit();
