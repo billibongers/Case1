@@ -297,7 +297,7 @@ $user= $_SESSION['SESS_FIRST_NAME'];
 			}
 			else{
 			
-			header("location: profile.php");
+			//header("location: profile.php");
 			exit();
 			}
 			}

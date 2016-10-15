@@ -1,6 +1,5 @@
 <?php
 	require('session.php');
-	require('connect.php');
 ?>
 <html>
 <script type="text/javascript">
@@ -86,8 +85,8 @@ body {
 	<?php
 include('connect.php');
 $id= $_SESSION['SESS_MEMBER_ID'];	
-$image=mysqli_query($mysqli,"SELECT * FROM members WHERE member_id='$id'");
-			$row=mysqli_fetch_assoc($image);
+$image=mysql_query("SELECT * FROM members WHERE member_id='$id'");
+			$row=mysql_fetch_assoc($image);
 			$_SESSION['image']= $row['profImage'];
 			echo '<div id="pic">';
 			echo "<a href=".$row['profImage']." rel=facebox;><img width=140 height=140 alt='Unable to View' src='" . $_SESSION['image'] . "'></a>";
@@ -103,9 +102,9 @@ $image=mysqli_query($mysqli,"SELECT * FROM members WHERE member_id='$id'");
 	<li><a href="info.php"><img src="img/message.png" width="16" height="12" border="0" /> &nbsp;Info</a>
 	</li>
 	<li><a href="photos.php"><img src="img/photos.png" width="16" height="12" border="0" /> &nbsp;Photos(<?php
-$result = mysqli_query($mysqli,"SELECT * FROM photos WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
+$result = mysql_query("SELECT * FROM photos WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
 	
-	$numberOfRows = MYSQLI_NUM_ROWS($result);	
+	$numberOfRows = MYSQL_NUMROWS($result);	
 	
 	echo '<font color="red">' . $numberOfRows . '</font>'; 
 	?>)	</a>
@@ -114,15 +113,15 @@ $result = mysqli_query($mysqli,"SELECT * FROM photos WHERE member_id='".$_SESSIO
 	(<?php 
 					
 					$member_id=$_SESSION['SESS_MEMBER_ID'];
-					$seeall=mysqli_query($mysqli,"SELECT * FROM friends WHERE friends_with='$member_id' AND status='unconf'") or die(mysql_error());
-					$numberOFRows=mysqli_num_rows($seeall);
+					$seeall=mysql_query("SELECT * FROM friends WHERE friends_with='$member_id' AND status='unconf'") or die(mysql_error());
+					$numberOFRows=mysql_numrows($seeall);
 					echo '<font color="red">'.$numberOFRows.'</font>';?>)
 					</a>
 	</li>
 	<li><a href=""><img src="img/m.png" width="16" height="12" border="0" /> &nbsp;Message&nbsp(<?php 
 $member_id = $_SESSION['SESS_MEMBER_ID'];
-$received = mysqli_query($mysqli, "SELECT * FROM messages WHERE recipient = '$member_id'")or die(mysql_error());
-								$receiveda = mysqli_num_rows($received);
+$received = mysql_query("SELECT * FROM messages WHERE recipient = '$member_id'")or die(mysql_error());
+								$receiveda = mysql_numrows($received);
 								echo '<font color="Red">'  .$receiveda .'</font>';
 
 
@@ -140,9 +139,9 @@ $received = mysqli_query($mysqli, "SELECT * FROM messages WHERE recipient = '$me
 	(<?php
 
 
-$result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf' ");
+$result = mysql_query("SELECT * FROM friends WHERE  friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf' ");
 	
-	$numberOfRows = mysqli_num_rows($result);	
+	$numberOfRows = MYSQL_NUMROWS($result);	
 	echo '<font color="Red">' . $numberOfRows. '</font>';
 	?>)
 	</a>
@@ -153,10 +152,10 @@ $result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$i
 							
 							
 								$member_id=$_SESSION['SESS_MEMBER_ID'];							
-								$post = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf'  ")or die(mysql_error());
+								$post = mysql_query("SELECT * FROM friends WHERE  friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf'  ")or die(mysql_error());
 								
 
-								$num_rows  =mysqli_num_rows($post);
+								$num_rows  =mysql_numrows($post);
 							
 							if ($num_rows != 0 ){
 
@@ -168,14 +167,14 @@ $result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$i
 									if($myfriend == $member_id){
 									
 										$myfriend1 = $row['friends_with'];
-										$friends = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysql_error());
+										$friends = mysql_query("SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysql_error());
 										$friendsa = mysql_fetch_array($friends);
 									
 										echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
 										
 									}else{
 										
-										$friends = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysql_error());
+										$friends = mysql_query("SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysql_error());
 										$friendsa = mysql_fetch_array($friends);
 										
 									echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
@@ -207,8 +206,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$i
         <li><a href="profile.php" ><?php
 
 
-$result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-while($row = mysqli_fetch_array($result))
+$result = mysql_query("SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
+while($row = mysql_fetch_array($result))
   {
   echo "<img width=20 height=15 alt='Unable to View' src='" . $row["profImage"] . "'>";
 echo"  ";
@@ -245,8 +244,8 @@ echo"  ";
 </br>
 <a  id="create" href="createmessage.php">Create Message</a><a  id="re" href="receivemessage.php">Receive Message
 (<?php
-$received = mysqli_query($mysqli, "SELECT * FROM messages WHERE recipient = '$member_id'")or die(mysql_error());
-								$receiveda = mysqli_num_rows($received);
+$received = mysql_query("SELECT * FROM messages WHERE recipient = '$member_id'")or die(mysql_error());
+								$receiveda = mysql_numrows($received);
 								
 								echo '<font color="Red">'  .$receiveda .'</font>';
 
