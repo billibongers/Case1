@@ -1,6 +1,8 @@
   <?php
 	require_once('session.php');
 	include("function.php");
+	require("connect.php");
+	//echo "<script>alert('halla 4')</script>";
 ?>
 
 <html>
@@ -99,8 +101,8 @@ body {
 	<?php
 include('connect.php');
 $id= $_SESSION['SESS_MEMBER_ID'];	
-$image=mysql_query("SELECT * FROM members WHERE member_id='$id'");
-			$row=mysql_fetch_assoc($image);
+$image=mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='$id'");
+			$row=mysqli_fetch_assoc($image);
 			$_SESSION['image']= $row['profImage'];
 			echo '<div id="pic">';
 			echo "<img width=140 height=140 alt='Unable to View' src='" . $_SESSION['image'] . "'>";
@@ -122,8 +124,8 @@ $image=mysql_query("SELECT * FROM members WHERE member_id='$id'");
         <li><a href="profile.php" ><?php
 
 
-$result = mysql_query("SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-while($row = mysql_fetch_array($result))
+$result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
+while($row = mysqli_fetch_array($result))
   {
   echo "<img width=20 height=15 alt='Unable to View' src='" . $row["profImage"] . "'>";
 echo"  ";
@@ -160,7 +162,7 @@ echo"  ";
 							$search_term = $_POST['search'];
 							 echo "<div style='float: left;padding: 5px 0px;width: 548px;'>";
 							 echo "<h3 style='padding-bottom:0px;'></h3>";
-							 searchmembers($search_term);
+							 searchmembers($mysqli, $search_term);
 							 echo "</div>";
 						}
 						?>
