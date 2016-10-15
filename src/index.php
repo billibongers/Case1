@@ -171,6 +171,15 @@ body {
 <link href="index.css" rel="stylesheet" type="text/css" />
 <link rel="icon" href="img/icon.png" type="image" />
 
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
 	<link href="facebox1.2/src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
@@ -230,7 +239,7 @@ $(".date").datepicker();
 
 <body>
 <div class="mainr">
- <div class="topleft"> <img src="img/logo.png" width="200" height="60" /></a></div>
+ <div class="topleft"> <img src="img/name.png" width="200" height="200" /></a></div>
 <form action="login.php" method="post">
   
   <div class="qwerty">
@@ -239,13 +248,21 @@ $(".date").datepicker();
         <div class="password">&nbsp;&nbsp;Password</div>
       </div>
       <div class="label1">
-        <div class="emailtext">
-          <input name="UserName" type="text"/>
-        </div>
-        <div class="passwordtext">
-          <input name="Password" type="password"  />
-          <input name="submit" type="submit" class="greenButton" value="Login" />
-        </div>
+      	<form>
+        	<div class="emailtext">
+        		<div class="form-group">
+	        		<label for="username">Username:</label>	
+	          		<input name="UserName" type="text" class="form-control">
+          		</div>
+        	</div>
+	        <div class="passwordtext">
+	        	<div class="form-group">
+	        		<label for="password">Password:</label>
+	         		<input name="Password" type="password" class="form-control">
+	          		<button type="submit" name="submit" value="Login" class="btn btn-default">Login</button>
+          		</div>
+	        </div>
+        </form>
       </div>
       <div class="label2">
         
@@ -259,7 +276,7 @@ $(".date").datepicker();
 
 <div class="downleft">
   <div class="picture">
-  <img src="bg/log.png" width="500" height="330" />
+  <img src="img/logo2.png" width="700" height="330" />
   </div>
   <div class="field">
     <div class="signup">Sign Up</div>
