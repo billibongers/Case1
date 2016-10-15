@@ -1,10 +1,14 @@
+	<?php
+		require("connect.php");
+	?>
+
 	<?php	
 	function searchmembers($search_term){
 
-			$sql = mysql_query("SELECT * FROM `members` WHERE `FirstName` LIKE '%$search_term%' OR `LastName` LIKE '%$search_term%' LIMIT 0, 30 ") or die (mysql_error());
-		            $num_of_row   = mysql_num_rows($sql);
+			$sql = mysqli_query($mysqli, "SELECT * FROM `members` WHERE `FirstName` LIKE '%$search_term%' OR `LastName` LIKE '%$search_term%' LIMIT 0, 30 ") or die (mysqli_error());
+		            $num_of_row   = mysqli_num_rows($sql);
 			    if ($num_of_row > 0 ){
-					 while($row    = mysql_fetch_array($sql))
+					 while($row    = mysqli_fetch_array($sql))
 					{ 
 						$id = $row['member_id'];
 					
