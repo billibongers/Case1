@@ -191,15 +191,15 @@ $result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$i
 									if($myfriend == $member_id){
 									
 										$myfriend1 = $row['friends_with'];
-										$friends = mysql_query("SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysql_error());
-										$friendsa = mysql_fetch_array($friends);
+										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysqli_error());
+										$friendsa = mysqli_fetch_array($friends);
 									
 										echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
 										
 									}else{
 										
-										$friends = mysql_query("SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysql_error());
-										$friendsa = mysql_fetch_array($friends);
+										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysqli_error());
+										$friendsa = mysqli_fetch_array($friends);
 										
 									echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
 										
