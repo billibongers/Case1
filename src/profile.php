@@ -49,11 +49,16 @@ function mcancelclosetime()
 document.onclick = mclose; 
 // -->
 </script>
-<head><title>Profile</title></head>
+<head><title>Profile</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
 
 <link href="home.css" rel="stylesheet" type="text/css" />
 <link rel="icon" href="img/icon.png" type="image" />
 <script type="text/javascript" src="js/jquery.js"></script>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
 <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
 	<link href="facebox1.2/src/facebox.css" media="screen" rel="stylesheet" type="text/css" />
 			<link href="../css/example.css" media="screen" rel="stylesheet" type="text/css" />
@@ -175,47 +180,47 @@ $result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$i
   <?php
 							
 							
-								$member_id=$_SESSION['SESS_MEMBER_ID'];							
-								$post = mysqli_query($mysqli, "SELECT * FROM friends WHERE friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf'  ")or die(mysql_error());
-								
+			$member_id=$_SESSION['SESS_MEMBER_ID'];							
+			$post = mysqli_query($mysqli, "SELECT * FROM friends WHERE friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf'  ")or die(mysql_error());
+			
 
-								$num_rows  =mysqli_num_rows($post);
-							
-							if ($num_rows != 0 ){
+			$num_rows  =mysqli_num_rows($post);
+		
+		if ($num_rows != 0 ){
 
-								while($row = mysql_fetch_array($post)){
+			while($row = mysql_fetch_array($post)){
+
+			$myfriend = $row['member_id'];
+			$member_id=$_SESSION['SESS_MEMBER_ID'];
+			
+				if($myfriend == $member_id){
 				
-								$myfriend = $row['member_id'];
-								$member_id=$_SESSION['SESS_MEMBER_ID'];
-								
-									if($myfriend == $member_id){
-									
-										$myfriend1 = $row['friends_with'];
-										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysqli_error());
-										$friendsa = mysqli_fetch_array($friends);
-									
-										echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
-										
-									}else{
-										
-										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysqli_error());
-										$friendsa = mysqli_fetch_array($friends);
-										
-									echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
-										
-									}
-								}
-								}else{
-									echo 'You don\'t have friends </li>';
-								}
+					$myfriend1 = $row['friends_with'];
+					$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysqli_error());
+					$friendsa = mysqli_fetch_array($friends);
+				
+					echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
+					
+				}else{
+					
+					$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysqli_error());
+					$friendsa = mysqli_fetch_array($friends);
+					
+				echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
+					
+				}
+			}
+			}else{
+				echo 'You don\'t have friends </li>';
+			}
 						
 							
-							?>
-							</ul>
-							
-							<ul id="sddm1">
-							<li><hr width="150"></li>
-							</ul>
+	?>
+</ul>
+
+<ul id="sddm1">
+<li><hr width="150"></li>
+</ul>
 </div>							
   </div>
   <div class="righttop1">
@@ -227,7 +232,8 @@ $result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$i
 </div>
     <div class="nav">
       <ul id="sddm">
-        <li><a href="profile.php" ><?php
+        <li><a href="profile.php" >
+<?php
 
 
 $result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
@@ -258,81 +264,38 @@ echo"  ";
   
 <div class="right">
 	<div class="rightright">
-	<form method="post">
-	 <a href ="editprofile.php" class="a">Edit Profile</a>
-	 
-	 </form>
-	 <div class="colorless"><b>People You May Know</b></div>
-	 <hr width="200">
-
-	<div class="bkb"></div>
-		
-			<?php
-					
-						$id = $_SESSION['SESS_MEMBER_ID'];
-						$post = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id != '$id' LIMIT 0,3")or die(mysql_error());
-						while($row = mysqli_fetch_array($post)){
-							echo '
-							<ul id="sddm11">
-							<li>
-								<a href="friendprofile.php?id='.$row['member_id'].'"><img class="img" src="'.$row['profImage'].'" alt="" height="40" width="40" " />
-								<font color="#1d3162">'.$row['FirstName']." ".$row['LastName'].'</font>
-								</br>
-							
-								<a href="addfriend.php?id='.$row['member_id'].'" rel="facebox"style="text-decoration:none;"  >Add as Friend</a></p>
-								<hr width=200>
-								</ul>
-							</li>';
-							
-						}
-					?>
-					
-	 </div>
+		<form method="post">
+		 <a href ="editprofile.php" class="a">Edit Profile</a>
+		 
+		 </form>
+		<a href="advert.php"><button type="button" class="btn btn-info"> Add Advert</button></a>			
+	</div>
+	
 
 	 
-	   <div class="shout">
+ <div class="shout">
 
-<h2><div class="color"><?php
-$result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-while($row = mysqli_fetch_array($result))
-  {
-  echo  $row["FirstName"];
-  echo"  ";
-  echo $row["LastName"];
+<h2>
+	<div class="color">
+		<?php
+			$result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
+			while($row = mysqli_fetch_array($result))
+			  {
+			  echo  $row["FirstName"];
+			  echo"  ";
+			  echo $row["LastName"];
 
-  }
-?>
-</div>
+			  }
+		?>
+	</div>
 </h2>
-<hr align="left" width="420">
-	   <?php
-echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-$result = mysqli_query($mysqli, "SELECT * FROM photos WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'  ORDER BY photo_id DESC LIMIT 0,4");
-
-
-while($row = mysqli_fetch_array($result))
-  {
-
-
-
- echo "<a href=".$row['location']." rel=example_group><img class=img width=70 height=70 alt='Unable to View' src='". $row["location"] . "'>" . '</a>';
- 
-
-  echo"";
- 
-
- 
-  }
-
-
-?>
 <hr align="left" width="420">
 <div class="information">
 <?php
 $result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
 while($row = mysqli_fetch_array($result))
   {
-  echo "Lives in: "."".$row['Address']. " | " ."Gender: ".$row['Gender']. " | " ."Born on: ".$row['Birthdate'];
+  echo " Gender: ".$row['Gender'];
   echo "</br>";
   echo "Contact No: "."".$row['ContactNo']. " | " ."Email: ".$row['Url'];
   echo "</br>";
@@ -340,6 +303,31 @@ while($row = mysqli_fetch_array($result))
   
   }
 ?>
+</div>
+<div>
+	<hr align="left" width="420">
+		   <?php
+	echo '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+	$result = mysqli_query($mysqli, "SELECT * FROM photos WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'  ORDER BY photo_id DESC LIMIT 0,4");
+
+
+	while($row = mysqli_fetch_array($result))
+	  {
+
+
+
+	 echo "<a href=".$row['location']." rel=example_group><img class=img width=70 height=70 alt='Unable to View' src='". $row["location"] . "'>" . '</a>';
+	 
+
+	  echo"";
+	 
+
+	 
+	  }
+
+
+	?>
+	<hr align="left" width="420">
 </div>
 </div> 
 <div class="shoutout">
