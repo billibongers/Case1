@@ -59,7 +59,7 @@ document.onclick = mclose;
 
 <link rel="icon" href="img/icon.png" type="image" />
 <script type="text/javascript" src="js/jquery.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
@@ -73,6 +73,27 @@ jQuery(document).ready(function($) {
   	closeImage   : " ../src/closelabel.png" 
 })
 </script>
+<style>
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+</style>
 
 <script type="text/javascript">
 
@@ -171,7 +192,7 @@ echo"  ";
 		</br>
 		</br>
 		<div class="u">
-        <form  name="form1" method="post" action="comment.php">
+        <!--<form  name="form1" method="post" action="comment.php">
           <div class="comment">
             <textarea name="message" cols="45" rows="5" id="message" onclick="this.value='';"></textarea>
           </div>
@@ -180,7 +201,18 @@ echo"  ";
           <input name="name1" type="hidden" id="name" value="<?php echo $_SESSION['SESS_LAST_NAME'];?>"/>
           <input type="submit" name="btnlog" value="Post" class="greenButton" />
           </div>
-        </form>
+        </form>-->
+		<form name="form1" method="post" action="addPost.php">
+			<div class="form-group">
+			  <input type="text" class="form-control" name="name" placeholder="Name of Product">
+			</div>
+			<div class="form-group">
+			  <input type="text" class="form-control" name="price" placeholder="Price">
+			</div>
+			<!--<label class="btn btn-primary btn-file">-->
+				<input type="file" name='carImagePost' class='btn btn-primary'>
+			<input type="submit" value="Upload" class="greenButton">
+		</form>
 		</div>
      <div class="s"> 
 	   <?php

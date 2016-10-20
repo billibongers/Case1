@@ -47,6 +47,12 @@ font-family:Palatino Linotype;
 font-size:12px;
 float:right;
 }
+.welcmMessage{
+	font-size: 18px;
+	position: absolute;
+	top: 120%;
+	left: 10%;
+}
 .emailtext{
 width:150px;
 font-family:"Courier New", Courier, monospace;

@@ -159,14 +159,7 @@ if ($fname!= "" && $lname!= "" && $login!= "" && $password!= "" && $cpassword==$
 <head><title>index</title></head>
 
 <style type="text/css">
-<!--
-body {
-	background-image: url(bg/bg3.jpg);
-	background-repeat:repeat-x;
-	background-color:#d9deeb;
 
-}
--->
 </style>
 <link href="index.css" rel="stylesheet" type="text/css" />
 <link rel="icon" href="img/icon.png" type="image" />
@@ -238,45 +231,47 @@ $(".date").datepicker();
 </script>
 
 <body>
+<div class="container">
 <div class="mainr">
  <div class="topleft"> <img src="img/name.png" width="200" height="200" /></a></div>
-	<form action="login.php" method="post">
-	  
-	  <div class="qwerty">
-	  <div class="label">
-	        <div class="email style1">&nbsp;UserName</div>
-	        <div class="password">&nbsp;&nbsp;Password</div>
-	      </div>
-	      <div class="label1">
-	      	<form>
-	        	<div class="emailtext">
-	        		<div class="form-group">
-		        		<label for="username">Username:</label>	
-		          		<input name="UserName" type="text" class="form-control">
-	          		</div>
-	        	</div>
-		        <div class="passwordtext">
-		        	<div class="form-group">
-		        		<label for="password">Password:</label>
-		         		<input name="Password" type="password" class="form-control">
-	          		</div>
-		        </div>
-		        <div class="emailtext">
-		        	<div class="form-group">
-	      				<button type="submit" name="submit" value="Login" class="btn btn-default">Login</button>
-	          		</div>
-		        </div>
-
-	        </form>
-	      </div>
-	      <div class="label2">
-	        
-	        <div class="password">&nbsp;&nbsp;Forgot Password?</div>
-	      </div>
-	    </div>
-	 	</form>
+<form action="login.php" method="post">
+  
+	<div class="qwerty">
+	<div class="label">
+        <div class="email style1">&nbsp;UserName</div>
+        <div class="password">&nbsp;&nbsp;Password</div>
 	</div>
-</div>
+	<div class="label1">
+      	<form>
+        	<div class="emailtext">
+        		<div class="form-group">
+	        		<label for="username">Username:</label>	
+	          		<input name="UserName" type="text" class="form-control">
+          		</div>
+        	</div>
+	        <div class="passwordtext">
+	        	<div class="form-group">
+	        		<label for="password">Password:</label>
+	         		<input name="Password" type="password" class="form-control">
+          		</div>
+	        </div>
+	        <div class="emailtext">
+	        	<div class="form-group">
+      				<button type="submit" name="submit" value="Login" class="btn btn-default">Login</button>
+          		</div>
+	        </div>
+
+        </form>
+	</div>
+      <div class="label2">
+        
+        <div class="password">&nbsp;&nbsp;Forgot Password?</div>
+      </div>
+    </div>
+ 
+  </form>
+   
+  </div>
 
 <div class="downleft">
   <div class="picture">
@@ -284,7 +279,10 @@ $(".date").datepicker();
   </br>
   <img src="img/logo2.png" width="500" height="200" />
   </div>
-  	<div class="field">
+	<div class='welcmMessage'>
+		Welcome to exclusive cars. Your one stop shop to buy or sell your car!
+	</div>
+	<div class="field">
 	    <div class="signup">Sign Up</div>
 	    <div>
 			<form  method="POST">
@@ -354,6 +352,7 @@ $(".date").datepicker();
 			 
 			</form>
 		</div>
+	</div>
 	</div>
 </body>
 </html>
