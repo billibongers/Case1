@@ -259,9 +259,14 @@ $(".date").datepicker();
 	        	<div class="form-group">
 	        		<label for="password">Password:</label>
 	         		<input name="Password" type="password" class="form-control">
-	          		<button type="submit" name="submit" value="Login" class="btn btn-default">Login</button>
           		</div>
 	        </div>
+	        <div class="emailtext">
+	        	<div class="form-group">
+      				<button type="submit" name="submit" value="Login" class="btn btn-default">Login</button>
+          		</div>
+	        </div>
+
         </form>
       </div>
       <div class="label2">
@@ -278,8 +283,9 @@ $(".date").datepicker();
   <div class="picture">
   </br>
   </br>
-  <img src="img/logo2.png" width="500" height="250" />
+  <img src="img/logo2.png" width="500" height="200" />
   </div>
+  Welcome to exclusive cars
   	<div class="field">
 	    <div class="signup">Sign Up</div>
 	    <div>
