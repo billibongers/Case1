@@ -202,7 +202,6 @@ echo"  ";
           <input type="submit" name="btnlog" value="Post" class="greenButton" />
           </div>
         </form>-->
-<<<<<<< HEAD
 		<?php
 			$file_result = $mysqli->query("SELECT * FROM adverts ORDER BY id DESC");
 			$rows_per_page =3;
@@ -252,8 +251,6 @@ echo"  ";
 			<!--	<input type="file" name='carImagePost' class='btn btn-primary'>
 			<input type="submit" value="Upload" class="greenButton">
 		</form>-->
-=======
->>>>>>> e37b9564e1febdceab59b6bde6007d564f3adf51
 		</div>
      <div class="s"> 
 	   <?php
@@ -264,29 +261,23 @@ $result = mysqli_query($mysqli, $query);
 			
 			
 
-//while($row = mysqli_fetch_assoc($result))
-//{
+while($row = mysqli_fetch_assoc($result))
+{
    echo '<div class="information">';
 	echo '<div class="pic1">';
-			//$result1 = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-			$result2 = mysqli_query($mysqli, "SELECT * FROM adverts");
-while($row1 = mysqli_fetch_array($result2))
+			$result1 = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
+while($row1 = mysqli_fetch_array($result1))
   {
-	echo "<img width=40 height=40 alt='Unable to View' src='" . $row1["location"] . "'>";
-	//}
+	echo "<img width=40 height=40 alt='Unable to View' src='" . $row1["profImage"] . "'>";
+	}
 	echo '<div class="message">';
 	
 		$result1 = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-		$row2 = mysqli_fetch_array($result1);
-//while($row2 = mysqli_fetch_array($result1))
-  //{
-$result2 = mysqli_query($mysqli, "SELECT * FROM adverts");
-$row3 = mysqli_fetch_array($result2);
- echo " Posted by:<font color=#1d3162> {$row2['FirstName']}"."&nbsp;{$row2["LastName"]}</font>";
- echo "<br>Price: R";
- $price = $row3["price"];
-echo $price;
-  //}
+while($row1 = mysqli_fetch_array($result1))
+  {
+
+
+ echo " Posted by:<font color=#1d3162> {$row1['FirstName']}"."&nbsp;{$row1["LastName"]}</font>";
   }
 	
 	
@@ -317,7 +308,7 @@ echo $price;
 	echo'</div>';
 	echo'</br>';
 	echo'</br>';
-	//}
+	}
 	
   echo '</div>';
   echo'</br>';

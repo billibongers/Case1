@@ -163,15 +163,11 @@ if ($fname!= "" && $lname!= "" && $login!= "" && $password!= "" && $cpassword==$
 </head>
 
 <style type="text/css">
-<<<<<<< HEAD
 .container {
 		    margin: 0 auto;
 		    text-align: left;
 		    width: 1000px;
 		}
-=======
-
->>>>>>> e37b9564e1febdceab59b6bde6007d564f3adf51
 </style>
 <link href="index.css" rel="stylesheet" type="text/css" />
 <link rel="icon" href="img/icon.png" type="image" />
@@ -244,7 +240,6 @@ $(".date").datepicker();
 </script>
 
 <body>
-<<<<<<< HEAD
 	<div class="center-container">
 		<div class="row">
 		
@@ -257,115 +252,6 @@ $(".date").datepicker();
 					<div class="label">
 						<div class="email style1">&nbsp;UserName</div>
 						<div class="password">&nbsp;&nbsp;Password</div>
-=======
-<div class="container">
-<div class="mainr">
- <div class="topleft"> <img src="img/name.png" width="200" height="200" /></a></div>
-<form action="login.php" method="post">
-  
-	<div class="qwerty">
-	<div class="label">
-        <div class="email style1">&nbsp;UserName</div>
-        <div class="password">&nbsp;&nbsp;Password</div>
-	</div>
-	<div class="label1">
-      	<form>
-        	<div class="emailtext">
-        		<div class="form-group">
-	        		<label for="username">Username:</label>	
-	          		<input name="UserName" type="text" class="form-control">
-          		</div>
-        	</div>
-	        <div class="passwordtext">
-	        	<div class="form-group">
-	        		<label for="password">Password:</label>
-	         		<input name="Password" type="password" class="form-control">
-          		</div>
-	        </div>
-	        <div class="emailtext">
-	        	<div class="form-group">
-      				<button type="submit" name="submit" value="Login" class="btn btn-default">Login</button>
-          		</div>
-	        </div>
-
-        </form>
-	</div>
-      <div class="label2">
-        
-        <div class="password">&nbsp;&nbsp;Forgot Password?</div>
-      </div>
-    </div>
- 
-  </form>
-   
-  </div>
-
-<div class="downleft">
-  <div class="picture">
-  </br>
-  </br>
-  <img src="img/logo2.png" width="500" height="200" />
-  </div>
-	<div class='welcmMessage'>
-		Welcome to exclusive cars. Your one stop shop to buy or sell your car!
-	</div>
-	<div class="field">
-	    <div class="signup">Sign Up</div>
-	    <div>
-			<form  method="POST">
-				<div class="form-group">
-					<label for="fname">First Name:</label>
-					<input name="fname" type="text" class="form-control" maxlength="10" value="<?php echo $fname; ?>">
-				</div>
-
-				<div class="form-group">
-					<label for="lname">Last Name:</label>
-					<input name="lname" type="text" class="form-control" value="<?php echo $lname; ?>">
-				</div>
-
-				<div class="form-group">
-					<label for="login">User Name:</label>
-					<input name="login" type="text" class="form-control" value="<?php echo $login; ?>">
-				</div>
-
-				<div class="form-group">
-					<label for="password2">Password:</label>
-					<input name="password2" type="password" class="form-control" value="<?php echo $password; ?>">
-				</div>
-
-				<div class="form-group">
-					<label for="cpassword">Retype Password:</label>
-					<input name="cpassword" type="password" class="form-control" value="<?php echo $cpassword; ?>">
-				</div>
-
-				<div class="form-group">
-					<label for="address">Address:</label>
-					<input name="address" type="text" class="form-control" value="<?php echo $address; ?>">
-				</div>
-
-				<div class="form-group">
-					<label for="cnumber">Contact Number:</label>
-					<input name="cnumber" type="text" class="form-control" maxlength="11" size="40" value="<?php echo $cnumber; ?>">
-					<input name="propic" id="dadded" type="hidden" value="upload/p.jpg" />
-				</div>
-
-
-				<div class="form-group">
-					<label for="email">Email:</label>
-					<input name="email" type="email" class="form-control" value="<?php echo $email; ?>">
-				</div>
-
-				<div class="form-group">
-					<label for="gender">Gender:</label>
-					<div class="textright1">
-						<div class="input-container">
-					  		<select name="gender" id="gender" class="form-control"><?php echo $vgender; ?> 
-		               			<option >Female</option>
-		                		<option >Male</option>
-		              		</select>
-		              		<br />
-						</div>
->>>>>>> e37b9564e1febdceab59b6bde6007d564f3adf51
 					</div>
 					<div class="label1">
 						<form>
@@ -482,7 +368,6 @@ $(".date").datepicker();
 				</div>
 			</div>
 		</div>
-	</div>
 	</div>
 </body>
 </html>
