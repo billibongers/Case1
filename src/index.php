@@ -134,9 +134,9 @@ if ($email=="") {
 	
 
 if ($fname!= "" && $lname!= "" && $login!= "" && $password!= "" && $cpassword==$password && $address!="" && preg_match($pattern,$email) && $cnumber!="" ) {
-		$link = mysqli_connect("localhost", "root", "abc123", "hello");
+		$link = mysqli_connect("localhost", "root", "rayban", "hello");
 	if(!$link) {
-		die('Failed to connect to server: ' . mysqli_error());
+		die('Failed to connect to server index.php line 137: ' . mysqli_error());
 	
 	}
 	

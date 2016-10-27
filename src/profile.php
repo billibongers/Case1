@@ -120,8 +120,6 @@ $image=mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='$id'");
 <ul id="sddm1">
 	<li><a href="editpic.php"><img src="img/pencil.png" width="17" height="17" border="0" /> &nbsp;Change Picture</a>
 	</li>
-	<li><a href="Home.php"><img src="img/wal.png" width="17" height="17" border="0" /> &nbsp;Wall</a>
-	</li>
 	<li><a href="info.php"><img src="img/message.png" width="16" height="12" border="0" /> &nbsp;Info</a>
 	</li>
 	<li><a href="photos.php"><img src="img/photos.png" width="16" height="12" border="0" /> &nbsp;Photos(<?php
@@ -131,15 +129,6 @@ $result = mysqli_query($mysqli, "SELECT * FROM photos WHERE member_id='".$_SESSI
 	
 	echo '<font color="red">' . $numberOfRows . '</font>'; 
 	?>)	</a>
-	</li>
-	<li><a href="request.php"><img src="img/friends.png" width="16" height="12" border="0" /> &nbsp;Friends Request
-	(<?php 
-					
-					$member_id=$_SESSION['SESS_MEMBER_ID'];
-					$seeall=mysqli_query($mysqli, "SELECT * FROM friends WHERE friends_with='$member_id' AND status='unconf'") or die(mysql_error());
-					$numberOFRows=mysqli_num_rows($seeall);
-					echo '<font color="red">'.$numberOFRows.'</font>';?>)
-					</a>
 	</li>
 	<li><a href="message.php"><img src="img/m.png" width="16" height="12" border="0" /> &nbsp;Message&nbsp(<?php 
 $member_id = $_SESSION['SESS_MEMBER_ID'];
@@ -154,68 +143,7 @@ $received = mysqli_query($mysqli, "SELECT * FROM messages WHERE recipient = '$me
 	
 	<li><hr width="150"></li>
 	<li>
-	</ul>
-	<div class="friend">
-	<ul id="sddm1">
-	<li><a href=""><img src="img/friends.png" width="16" height="12" border="0" /> &nbsp;Friends
-	
-	(<?php
-
-
-$result = mysqli_query($mysqli, "SELECT * FROM friends WHERE  friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf' ");
-	
-	$numberOfRows = MYSQLI_NUM_ROWS($result);	
-	echo '<font color="Red">' . $numberOfRows. '</font>';
-	?>)
-	</a>
-	</li>
-	</ul>
-	<ul id="sddm1">
-  <?php
-							
-							
-								$member_id=$_SESSION['SESS_MEMBER_ID'];							
-								$post = mysqli_query($mysqli, "SELECT * FROM friends WHERE friends_with = '$id' and  member_id!= '$id' and status = 'conf'    OR member_id = '$id' and friends_with != '$id' and status = 'conf'  ")or die(mysql_error());
-								
-
-								$num_rows  =mysqli_num_rows($post);
-							
-							if ($num_rows != 0 ){
-
-								while($row = mysql_fetch_array($post)){
-				
-								$myfriend = $row['member_id'];
-								$member_id=$_SESSION['SESS_MEMBER_ID'];
-								
-									if($myfriend == $member_id){
-									
-										$myfriend1 = $row['friends_with'];
-										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysqli_error());
-										$friendsa = mysqli_fetch_array($friends);
-									
-										echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
-										
-									}else{
-										
-										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysqli_error());
-										$friendsa = mysqli_fetch_array($friends);
-										
-									echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
-										
-									}
-								}
-								}else{
-									echo 'You don\'t have friends </li>';
-								}
-						
-							
-							?>
-							</ul>
-							
-							<ul id="sddm1">
-							<li><hr width="150"></li>
-							</ul>
-</div>							
+	</ul>							
   </div>
   <div class="righttop1">
        <div class="search">
