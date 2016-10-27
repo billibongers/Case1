@@ -49,7 +49,10 @@ function mcancelclosetime()
 document.onclick = mclose; 
 // -->
 </script>
-<head><title>Profile</title></head>
+<head><title>Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+</head>
 
 <link href="home.css" rel="stylesheet" type="text/css" />
 <link rel="icon" href="img/icon.png" type="image" />
@@ -346,82 +349,59 @@ while($row = mysqli_fetch_array($result))
 
 		<div  class="back"><h4><class="p"><div></h4></div>
 		</br>
-          <form  name="form1" method="post" action="comment1.php">
-          <div class="comment">
-            <textarea name="message" cols="45" rows="5" id="message" onclick="this.value='';"></textarea>
-          </div>
-          <input name="name" type="hidden" id="name" value="<?php echo $_SESSION['SESS_FIRST_NAME'];?>"/>
-		  <input name="poster" type="hidden" id="name" value="<?php echo $_SESSION['SESS_MEMBER_ID'];?>"/>
-          <input name="name1" type="hidden" id="name" value="<?php echo $_SESSION['SESS_LAST_NAME'];?>"/>
-          <input type="submit" name="btnlog" value="Post" class="greenButton" />
-          </div>
-        </form>
-		 <div class="s"> 
- <?php
-	   
+         <form method="post" action="addPost.php" enctype="multipart/form-data">
+			<div class="form-group">
+			  <input type="text" class="form-control" name="name" placeholder="Name of Product">
+			</div>
+			<div class="form-group">
+			  <input type="text" class="form-control" name="price" placeholder="Price">
+			</div>
+			<input type="file" name="image" class="font"> 
+			<input name="member_id" type="hidden"  value="<?php echo $_SESSION['SESS_MEMBER_ID'];?>"/>
+			<input type="submit" value="Upload">
+		</form>
+		  
 
-  $query  = "SELECT *,UNIX_TIMESTAMP() - date_created AS TimeSpent FROM comment WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."' ORDER BY comment_id DESC";
-$result = mysqli_query($mysqli, $query);
-			
-			
-
-while($row = mysqli_fetch_assoc($result))
-{
-   echo '<div class="information">';
-	echo '<div class="pic1">';
-			$result1 = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-while($row1 = mysqli_fetch_array($result1))
-  {
-	echo "<img width=40 height=40 alt='Unable to View' src='" . $row1["profImage"] . "'>";
-	}
-	echo '<div class="message">';
-	
-		$result1 = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-while($row1 = mysqli_fetch_array($result1))
-  {
-
-
- echo " Posted by:<font color=#1d3162> {$row1['FirstName']}"."&nbsp;{$row1["LastName"]}</font>";
-  }
-	
-	
-	echo '</br>';
-	echo "{$row['comment']}";
-
-	echo'</br>';
-	echo'</br>';
-	echo'</div>';
-	echo'<hr width="390">';
-	echo '<div class="kkk">';
-	
-	echo'<a class="style" href="deletepost1.php?id=' . $row["comment_id"] . '">delete</a>&nbsp;&nbsp;<a class="style" href=""><img width=20 height=20  src=img/like.png>Like</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
-	
-	$days = floor($row['TimeSpent'] / (60 * 60 * 24));
-			$remainder = $row['TimeSpent'] % (60 * 60 * 24);
-			$hours = floor($remainder / (60 * 60));
-			$remainder = $remainder % (60 * 60);
-			$minutes = floor($remainder / 60);
-			$seconds = $remainder % 60;
-	if($days > 0)
-			echo date('F d Y', $row['date_created']);
-			elseif($days == 0 && $hours == 0 && $minutes == 0)
-			echo "few seconds ago";		
-			elseif($days == 0 && $hours == 0)
-			echo $minutes.' minutes ago';
-		
-	echo'</div>';
-	echo'</br>';
-	echo'</br>';
-	}
-	
-  echo '</div>';
-  echo'</br>';
- 
-  ?>
       
 	
 	 </div>
-	</div>
+	<?php
+			$file_result = $mysqli->query("SELECT * FROM adverts ORDER BY id DESC");
+			$rows_per_page =3;
+			$file_records = mysqli_num_rows($file_result);
+			$total_records = $file_records;
+			$pages = ceil($total_records / $rows_per_page);
+			/*if(!isset($_GET['page']))
+			{
+				header("location:Home.php?page=1");
+			}
+			else
+			{
+				$page = $_GET['page'];
+			}
+			$start = (($page-1)*$rows_per_page);*/
+			$colours = $mysqli->query("SELECT * FROM adverts ORDER BY id DESC");
+		?>
+		<?php while($file_row = $colours->fetch_assoc()){ ?>
+		<h3>Name of Car:  <?php print($file_row['name']); ?></h3>
+		<h5>Date posted: <?php print($file_row['date']);?></h5>
+		<h5>Price: <?php print($file_row['price']);?></h5>
+		<h5>Name of Seller: <?php echo $_SESSION['SESS_FIRST_NAME'];?></h5>
+		<?php 
+			echo "<img src='".$file_row['location']."' alt='".$file_row['name']."' height='130px' width='130px'>"; $path = $file_row['location']; 
+		?>
+		<?php echo '&nbsp'; echo "<a class='btn btn-success' href='$path' >View</a>";?>
+		<?php } ?>
+
+		<?php
+						
+			/*echo '<h3>Page number: </h3>';
+			for($number=1;$number<$pages;$number++)
+			{
+				 echo '<a href="?page='.$number.'">'.$number.'</a>'.' '.' ';
+							
+			}*/
+		?>
 
 </body>
 </html>

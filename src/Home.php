@@ -59,7 +59,7 @@ document.onclick = mclose;
 
 <link rel="icon" href="img/icon.png" type="image" />
 <script type="text/javascript" src="js/jquery.js"></script>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="./js/jquery-1.4.2.min.js"></script>
@@ -73,6 +73,27 @@ jQuery(document).ready(function($) {
   	closeImage   : " ../src/closelabel.png" 
 })
 </script>
+<style>
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+</style>
 
 <script type="text/javascript">
 
@@ -171,7 +192,7 @@ echo"  ";
 		</br>
 		</br>
 		<div class="u">
-        <form  name="form1" method="post" action="comment.php">
+        <!--<form  name="form1" method="post" action="comment.php">
           <div class="comment">
             <textarea name="message" cols="45" rows="5" id="message" onclick="this.value='';"></textarea>
           </div>
@@ -180,7 +201,56 @@ echo"  ";
           <input name="name1" type="hidden" id="name" value="<?php echo $_SESSION['SESS_LAST_NAME'];?>"/>
           <input type="submit" name="btnlog" value="Post" class="greenButton" />
           </div>
-        </form>
+        </form>-->
+		<?php
+			$file_result = $mysqli->query("SELECT * FROM adverts ORDER BY id DESC");
+			$rows_per_page =3;
+			$file_records = mysqli_num_rows($file_result);
+			$total_records = $file_records;
+			$pages = ceil($total_records / $rows_per_page);
+			/*if(!isset($_GET['page']))
+			{
+				header("location:Home.php?page=1");
+			}
+			else
+			{
+				$page = $_GET['page'];
+			}
+			$start = (($page-1)*$rows_per_page);*/
+			$colours = $mysqli->query("SELECT * FROM adverts ORDER BY id DESC");
+		?>
+		<?php while($file_row = $colours->fetch_assoc()){ ?>
+		<h3>Name of Car:  <?php print($file_row['name']); ?></h3>
+		<h5>Date posted: <?php print($file_row['date']);?></h5>
+		<h5>Price: <?php print($file_row['price']);?></h5>
+		<a class='btn btn-default' href='profile.php'><h5>Name of Seller: <?php echo $_SESSION['SESS_FIRST_NAME'];?></h5></a><br/><br/>
+		<a class='btn btn-success' href='profile.php'><h5>Contact Seller</h5></a><br/><br/>
+		<?php 
+			echo "<img src='".$file_row['location']."' alt='".$file_row['name']."' height='130px' width='130px'>"; $path = $file_row['location']; 
+		?>
+		<?php echo '&nbsp'; echo "<a class='btn btn-success' href='$path' >View</a>";?>
+		<?php } ?>
+
+		<?php
+						
+			/*echo '<h3>Page number: </h3>';
+			for($number=1;$number<$pages;$number++)
+			{
+				 echo '<a href="?page='.$number.'">'.$number.'</a>'.' '.' ';
+							
+			}*/
+		?>
+		<!--<form name="form1" method="post" action="addPost.php">
+			<div class="form-group">
+			  <input type="text" class="form-control" name="name" placeholder="Name of Product">
+			</div>
+			<div class="form-group">
+			  <input type="text" class="form-control" name="price" placeholder="Price">
+			</div>
+			<!--<label class="btn btn-primary btn-file">-->
+			<!--	<input type="file" name='carImagePost' class='btn btn-primary'>
+			<input type="submit" value="Upload" class="greenButton">
+		</form>-->
 		</div>
      <div class="s"> 
 	   <?php

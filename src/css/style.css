@@ -17,6 +17,7 @@ input, textarea {
     padding-right: 3px;
     padding-top: 3px;
 }
+
 body {color: #1b1b1b;font-family: "Trebuchet MS","Myriad Pro",Arial,sans-serif;font-size: 14px;margin: 0; padding: 0; overflow-y:scroll;}
 /*standard*/
 .wrapper{width:960px; margin:0 auto;background:#015071;}

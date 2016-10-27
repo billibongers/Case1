@@ -236,7 +236,7 @@ echo"  ";
 
 		<div  class="back"><h4><class="p"><div></h4></div>
 		</br>
-       <form  method="post" enctype="multipart/form-data">
+<form  method="post" enctype="multipart/form-data">
  <div class="color"><h2>Upload Photos:</h2></div>
   </br>
   Select Picture
@@ -278,7 +278,7 @@ echo"  ";
 			move_uploaded_file($_FILES["image"]["tmp_name"],"upload/" . $_FILES["image"]["name"]);			
 			$location="upload/" . $_FILES["image"]["name"];
 			$by=$_POST['member_id'];
-		
+			
 
 			$sql="INSERT INTO photos (location, member_id)
 VALUES

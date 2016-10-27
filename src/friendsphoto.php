@@ -111,8 +111,8 @@ body {
 	<?php
 include('connect.php');
 $member_id = $_SESSION['SESS_MEMBER_ID'];
-					$post = mysql_query("SELECT * FROM members WHERE member_id = '$userid'")or die(mysql_error());
-					$row = mysql_fetch_array($post); 
+					$post = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$userid'")or die(mysql_error());
+					$row = mysqli_fetch_array($post); 
 
 ?>
 	<img src="<?php echo $row['profImage'];?>" alt="" height="140"  width="140" border="0" class="left_bt" />
@@ -127,9 +127,9 @@ $member_id = $_SESSION['SESS_MEMBER_ID'];
 		</li>	
 	<li><?php $id = $row['member_id'];
 			echo "<a href='friendsphoto.php?action=view&id=".$id."'><img src=img/photos.png width=17 height=17 border=0 />"."&nbsp;&nbsp;Photos"?>(<?php
-$result = mysql_query("SELECT * FROM photos WHERE member_id='$userid'");
+$result = mysqli_query($mysqli,"SELECT * FROM photos WHERE member_id='$userid'");
 	
-	$numberOfRows = MYSQL_NUMROWS($result);	
+	$numberOfRows = mysqli_num_rows($result);	
 	
 	echo '<font color="red">' . $numberOfRows . '</font>'; 
 	?>)	</a>
@@ -145,9 +145,9 @@ $result = mysql_query("SELECT * FROM photos WHERE member_id='$userid'");
 	(<?php
 
 
-$result = mysql_query("SELECT * FROM friends WHERE status='conf'");
+$result = mysqli_query($mysqli,"SELECT * FROM friends WHERE status='conf'");
 	
-	$numberOfRows = MYSQL_NUMROWS($result);	
+	$numberOfRows = mysqli_num_rows($result);	
 	echo '<font color="Red">' . $numberOfRows. '</font>';
 	?>)
 	</a>
@@ -158,13 +158,13 @@ $result = mysql_query("SELECT * FROM friends WHERE status='conf'");
 							
 							
 								$member_id=$userid;							
-								$post = mysql_query("SELECT * FROM friends WHERE status = 'conf' ")or die(mysql_error());
+								$post = mysqli_query($mysqli,"SELECT * FROM friends WHERE status = 'conf' ")or die(mysql_error());
 								
-								$num_rows  =mysql_numrows($post);
+								$num_rows  =mysqli_num_rows($post);
 							
 							if ($num_rows != 0 ){
 
-								while($row = mysql_fetch_array($post)){
+								while($row = mysqli_fetch_array($post)){
 				
 								$myfriend = $row['member_id'];
 								$member_id=$userid;
@@ -172,15 +172,15 @@ $result = mysql_query("SELECT * FROM friends WHERE status='conf'");
 									if($myfriend == $member_id){
 									
 										$myfriend1 = $row['friends_with'];
-										$friends = mysql_query("SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysql_error());
-										$friendsa = mysql_fetch_array($friends);
+										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend1'")or die(mysql_error());
+										$friendsa = mysqli_fetch_array($friends);
 									
 										echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
 										
 									}else{
 										
-										$friends = mysql_query("SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysql_error());
-										$friendsa = mysql_fetch_array($friends);
+										$friends = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id = '$myfriend'")or die(mysql_error());
+										$friendsa = mysqli_fetch_array($friends);
 										
 									echo '<li> <a href=friendprofile.php?id='.$friendsa["member_id"].' style="text-decoration:none;"><img src="'. $friendsa['profImage'].'" height="50" width="50"></li><br><li>'.$friendsa['FirstName'].' '.$friendsa['LastName'].' </a> </li>';
 										
@@ -211,8 +211,8 @@ $result = mysql_query("SELECT * FROM friends WHERE status='conf'");
         <li><a href="profile.php" ><?php
 
 
-$result = mysql_query("SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
-while($row = mysql_fetch_array($result))
+$result = mysqli_query($mysqli,"SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
+while($row = mysqli_fetch_array($result))
   {
   echo "<img width=20 height=15 alt='Unable to View' src='" . $row["profImage"] . "'>";
 echo"  ";
@@ -245,10 +245,10 @@ echo"  ";
 	<div class="photos">
 <?php
 $member_id = $_SESSION['SESS_MEMBER_ID'];
-$result = mysql_query("SELECT * FROM photos WHERE member_id='$userid'  ORDER BY photo_id DESC");
+$result = mysqli_query($mysqli,"SELECT * FROM photos WHERE member_id='$userid'  ORDER BY photo_id DESC");
 
 
-while($row = mysql_fetch_array($result))
+while($row = mysqli_fetch_array($result))
   {
 
 
@@ -259,7 +259,7 @@ while($row = mysql_fetch_array($result))
  
   }
 
-mysql_close($con);
+mysqli_close($mysqli);
 ?>
 </div>
 </br>
