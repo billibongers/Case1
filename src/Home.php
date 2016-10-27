@@ -109,19 +109,14 @@ $("#shadow").fadeOut();
    </script>
 <style type="text/css">
 <!--
-body {
-	background-image: url(images/New%20Picture.jpg);
-	background-repeat: repeat-x;
-}
+
 .style1 {font-weight: bold}
 -->
 </style>
-</body>
+<body>
 <div class="main">
-<div id="shadow" class="popup"></div>
-
   <div class="lefttop1">
-  <div class="lefttopleft"><img src="img/logo.png" width="150" height="40" /></div>
+  <div class="lefttopleft"><img src="img/name.png" width="100" height="100"/></div>
    <div class="propic">
 	<?php
 include('connect.php');
@@ -136,7 +131,7 @@ $image=mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='$id'");
 ?>
 </div>
 
-  </div>
+</div>
   <div class="righttop1">
        <div class="search">
       <form action="search.php" method="POST">

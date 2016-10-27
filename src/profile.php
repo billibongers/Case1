@@ -94,10 +94,6 @@ jQuery(document).ready(function($) {
 		
 <style type="text/css">
 <!--
-body {
-	background-image: url(images/New%20Picture.jpg);
-	background-repeat: repeat-x;
-}
 .style1 {font-weight: bold}
 -->
 </style>
@@ -106,7 +102,7 @@ body {
 
 
 <div class="lefttop1">
-  <div class="lefttopleft"> <a href="img/logo.jpg" rel="facebox"><img src="img/logo.png" width="150" height="40" /></a></div>
+  <div class="lefttopleft"><img src="img/name.png" width="100" height="100"/></div>
    <div class="propic">
 
 	<?php
@@ -265,35 +261,12 @@ echo"  ";
 	 <a href ="editprofile.php" class="a">Edit Profile</a>
 	 
 	 </form>
-	 <div class="colorless"><b>People You May Know</b></div>
 	 <hr width="200">
-
-	<div class="bkb"></div>
-		
-			<?php
-					
-						$id = $_SESSION['SESS_MEMBER_ID'];
-						$post = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id != '$id' LIMIT 0,3")or die(mysql_error());
-						while($row = mysqli_fetch_array($post)){
-							echo '
-							<ul id="sddm11">
-							<li>
-								<a href="friendprofile.php?id='.$row['member_id'].'"><img class="img" src="'.$row['profImage'].'" alt="" height="40" width="40" " />
-								<font color="#1d3162">'.$row['FirstName']." ".$row['LastName'].'</font>
-								</br>
-							
-								<a href="addfriend.php?id='.$row['member_id'].'" rel="facebox"style="text-decoration:none;"  >Add as Friend</a></p>
-								<hr width=200>
-								</ul>
-							</li>';
-							
-						}
-					?>
 					
 	 </div>
 
 	 
-	   <div class="shout">
+<div class="shout">
 
 <h2><div class="color"><?php
 $result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
