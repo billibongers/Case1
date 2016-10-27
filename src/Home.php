@@ -72,6 +72,7 @@ jQuery(document).ready(function($) {
   $('a[rel*=facebox]').facebox() 
   	closeImage   : " ../src/closelabel.png" 
 })
+
 </script>
 <style>
 .btn-file {
@@ -109,14 +110,19 @@ $("#shadow").fadeOut();
    </script>
 <style type="text/css">
 <!--
-
+body {
+	background-image: url(images/New%20Picture.jpg);
+	background-repeat: repeat-x;
+}
 .style1 {font-weight: bold}
 -->
 </style>
-<body>
+</body>
 <div class="main">
+<div id="shadow" class="popup"></div>
+
   <div class="lefttop1">
-  <div class="lefttopleft"><img src="img/name.png" width="100" height="100"/></div>
+  <div class="lefttopleft"><img src="img/logo.png" width="150" height="40" /></div>
    <div class="propic">
 	<?php
 include('connect.php');
@@ -131,7 +137,7 @@ $image=mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='$id'");
 ?>
 </div>
 
-</div>
+  </div>
   <div class="righttop1">
        <div class="search">
       <form action="search.php" method="POST">
@@ -218,7 +224,12 @@ echo"  ";
 		<h3>Name of Car:  <?php print($file_row['name']); ?></h3>
 		<h5>Date posted: <?php print($file_row['date']);?></h5>
 		<h5>Price: <?php print($file_row['price']);?></h5>
-		<a class='btn btn-default' href='profile.php'><h5>Name of Seller: <?php echo $_SESSION['SESS_FIRST_NAME'];?></h5></a><br/><br/>
+		<a class='btn btn-default' href='profile.php'><h5>Name of Seller: <?php 
+			$result = mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='".$file_row['member_id']."'");
+			$row = mysqli_fetch_array($result);
+			//echo $row["FirstName"]." ".$row["LastName"];
+			echo $file_row['member_id'];
+			?></h5></a><br/><br/>
 		<a class='btn btn-success' href='profile.php'><h5>Contact Seller</h5></a><br/><br/>
 		<?php 
 			echo "<img src='".$file_row['location']."' alt='".$file_row['name']."' height='130px' width='130px'>"; $path = $file_row['location']; 

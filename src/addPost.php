@@ -3,12 +3,22 @@
 <?php
 
 
-
+$id = $_SESSION['SESS_MEMBER_ID'];
 $name = $_POST['name'];
 $price = $_POST['price'];
+$category = $_POST['category'];
+$condition = $_POST['condition'];
+$description = $_POST['description'];
 
-	if (!isset($_FILES['image']['tmp_name'])) {
-	echo "a";
+echo $name;
+echo $price;
+echo $category;
+echo $condition;
+echo $description;
+echo $id;
+
+ 	if (!isset($_FILES['image']['tmp_name'])) {
+ 	echo "a";
 	}else{
 	$image= addslashes(file_get_contents($_FILES['image']['tmp_name']));
 	$image_name= addslashes($_FILES['image']['name']);
@@ -27,7 +37,8 @@ $price = $_POST['price'];
 			$by=$_POST['member_id'];
 			
 
-$sql = "INSERT INTO adverts(`name`, `price`, `location`, `member_id`) VALUES ('$name','$price','$location','by')";
+//$sql = "INSERT INTO adverts(`name`, `price`, `location`, `member_id`, 'product_condition', 'product_description', 'category') VALUES ('$name','$price','$location','$by', '$condition', '$description', '$category')";
+$sql = "INSERT INTO adverts(name) VALUES ('$name')";
 if (!mysqli_query($mysqli,$sql))
   {
   die('Error: ' . mysqli_error());
