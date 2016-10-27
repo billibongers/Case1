@@ -37,11 +37,12 @@ echo $id;
 			$by=$_POST['member_id'];
 			
 
-//$sql = "INSERT INTO adverts(`name`, `price`, `location`, `member_id`, 'product_condition', 'product_description', 'category') VALUES ('$name','$price','$location','$by', '$condition', '$description', '$category')";
-$sql = "INSERT INTO adverts(name) VALUES ('$name')";
-if (!mysqli_query($mysqli,$sql))
+$sql = "INSERT INTO adverts(`name`, `price`, `location`, `member_id`, `product_condition`, `product_description`, `category`) VALUES ('$name','$price','$location','$by', '$condition', '$description', '$category')";
+//$sql = "INSERT INTO adverts(`name`, `price`, `member_id`) VALUES ('$name','$price', '$by')";
+$result = mysqli_query($mysqli,$sql);
+if (!$result)
   {
-  die('Error: ' . mysqli_error());
+  die('Error: ' . mysqli_error($result));
   }
 header("location: photos.php");
 exit();
