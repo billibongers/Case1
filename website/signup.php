@@ -1,3 +1,27 @@
+<?php
+	if(isset($_POST['submit']))
+	{
+		include("connect.php");
+		$firstName = $_POST['first_name'];
+		$lastName = $_POST['last_name'];
+		$username = $_POST['username'];
+		$password = $_POST['password'];
+		$password = hash('sha256', $password);
+		$email = $_POST['email'];
+		$address = $_POST['address'];
+		$con = $_POST['num'];
+		
+		echo $email;
+		
+		$sql = "INSERT INTO members (UserName, Password, FirstName, LastName, Address, ContactNo, Url) VALUES ('$username', '$password', '$firstName', '$lastName', '$address', '$con',  '$email')";
+		$result = mysqli_query($conn, $sql);
+		
+		//if($result)
+			//header("location: login.php");
+		
+		
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,35 +54,48 @@
     <div class="container">
     <br><br>
        <div class="row">
-    <form class="col s12">
+    <form class="col s12" method="post" action="">
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+          <input placeholder="Placeholder" id="first_name" name="first_name" type="text" class="validate">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" type="text" class="validate">
+          <input id="last_name" name="last_name" type="text" class="validate">
           <label for="last_name">Last Name</label>
         </div>
       </div>
     <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="username" name="username" type="text" class="validate">
           <label for="password">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" type="password" class="validate">
+          <input id="password" name="password" type="password" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" type="email" class="validate">
+          <input id="address" name="address" type="text" class="validate">
+          <label for="address">Address</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="num" name="num" type="text" class="validate">
+          <label for="num">Contact No</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input id="email" name="email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
+      <button class="waves-effect waves-light btn" type="submit" name="submit">submit</button>
     </form>
   </div>
       </div>
