@@ -56,7 +56,11 @@
 		{
 		 echo "<tr>";
 		    echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
-		    echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<br><button class='waves-effect waves-light btn' type='submit' name=".$row['id']."'>View</button></td>";
+		    echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
+    <li>
+      <div class='collapsible-header'>View More</div>
+      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
+    </li></td>";
 		    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
 		  echo "</tr>";
 		  }
@@ -64,6 +68,15 @@
         </tbody>
       </table>
 	</div>
+  </div>
+   <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
   </div>
       </div>
      <!-- <div class="row center">
@@ -152,11 +165,14 @@
     </div>
   </footer>
 
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  
 
   </body>
 </html>
+
+
+
