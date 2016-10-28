@@ -33,20 +33,37 @@
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
-    <div class="right hide-on-med-and-down">
-				 <form method="post">
-					<div class="input-field">
-						  <input id="search" type="search" name="search" required>
-						  <label for="search"><i class="material-icons">search</i></label>
-						  <i class="material-icons">close</i>
-					</div>
-				</form>
-			</div>
   </nav>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
     <br><br>
-       <div class="row">
+	<div>
+		 <table class="striped">
+        <thead>
+          <tr>
+              <th data-field="id">Product Image</th>
+              <th data-field="name">Product Overview</th>
+              <th data-field="price">Contact Seller</th>
+          </tr>
+        </thead>
+
+        <tbody>
+	<?php
+		include("connect.php");
+		$sql = "SELECT * FROM adverts";
+		$result = mysqli_query($conn, $sql);
+		while($row = mysqli_fetch_assoc($result))
+		{
+		 echo "<tr>";
+		    echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
+		    echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<br><button class='waves-effect waves-light btn' type='submit' name=".$row['id']."'>View</button></td>";
+		    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+		  echo "</tr>";
+		  }
+	  ?>
+        </tbody>
+      </table>
+	</div>
   </div>
       </div>
      <!-- <div class="row center">
