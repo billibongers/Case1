@@ -12,7 +12,9 @@
 		{
 			if(mysqli_num_rows($result) > 0)
 			{
-				echo "yeah";
+				$row = mysqli_fetch_assoc($result);
+				$_SESSION["id"] = $row['member_id'];
+				$_SESSION["username"] = $row['UserName'];
 			}
 			else
 				echo "nah";
