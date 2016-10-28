@@ -15,6 +15,7 @@
 				$row = mysqli_fetch_assoc($result);
 				$_SESSION["id"] = $row['member_id'];
 				$_SESSION["username"] = $row['UserName'];
+        header("location: home.php");
 			}
 			else
 				echo "nah";
