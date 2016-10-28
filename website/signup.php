@@ -11,13 +11,13 @@
 		$address = $_POST['address'];
 		$con = $_POST['num'];
 		
-		echo $email;
+		//echo $email;
 		
 		$sql = "INSERT INTO members (UserName, Password, FirstName, LastName, Address, ContactNo, Url) VALUES ('$username', '$password', '$firstName', '$lastName', '$address', '$con',  '$email')";
 		$result = mysqli_query($conn, $sql);
 		
-		//if($result)
-			//header("location: login.php");
+		if($result)
+			header("location: login.php");
 		
 		
 	}
