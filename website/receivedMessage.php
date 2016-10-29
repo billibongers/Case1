@@ -20,14 +20,13 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
-       <ul class="right hide-on-med-and-down">
-        <li><a href="addProduct.php">Add Product</a></li>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
       </ul>
-        <ul class="right hide-on-med-and-down">
+      <ul class="right hide-on-med-and-down">
         <li><a href="profile.php">Profile</a></li>
       </ul>
-	   </ul>
-        <ul class="right hide-on-med-and-down">
+       <ul class="right hide-on-med-and-down">
         <li><a href="home.php">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
