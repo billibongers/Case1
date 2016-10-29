@@ -1,4 +1,5 @@
 <?php
+	session_start();
 	if(isset($_POST['submit']))
 	{
 		include("connect.php");
@@ -6,18 +7,60 @@
 		$lastName = $_POST['last_name'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$password = hash('sha256', $password);
+		//$password = hash('sha256', $password);
 		$email = $_POST['email'];
 		$address = $_POST['address'];
 		$con = $_POST['num'];
+		$id = $_SESSION["id"]; 
 		
 		//echo $email;
 		
-		$sql = "INSERT INTO members (UserName, Password, FirstName, LastName, Address, ContactNo, Url) VALUES ('$username', '$password', '$firstName', '$lastName', '$address', '$con',  '$email')";
-		$result = mysqli_query($conn, $sql);
+		if($firstName != '')
+		{
+			$sql = "UPDATE members SET FirstName = '$firstName' WHERE member_id='$id'";
+			$result = mysqli_query($conn, $sql);
+		}
+		
+		if($lastName != '')
+		{
+			$sql = "UPDATE members SET LastName = '$lastName' WHERE member_id='$id'";
+			$result = mysqli_query($conn, $sql);
+		}
+		
+		if($username != '')
+		{
+			$sql = "UPDATE members SET UserName = '$userName' WHERE member_id='$id'";
+			$result = mysqli_query($conn, $sql);
+		}
+		
+		if($password != '')
+		{
+			$sql = "UPDATE members SET Password = '$password' WHERE member_id='$id'";
+			$result = mysqli_query($conn, $sql);
+		}
+		
+		if($email != '')
+		{
+			$sql = "UPDATE members SET Url = '$email' WHERE member_id='$id'";
+			$result = mysqli_query($conn, $sql);
+		}
+		
+		if($address != '')
+		{
+			$sql = "UPDATE members SET Address = '$address' WHERE member_id='$id'";
+			$result = mysqli_query($conn, $sql);
+		}
+		
+		if($con != '')
+		{
+			$sql = "UPDATE members SET ContactNo = '$con' WHERE member_id='$id'";
+			$result = mysqli_query($conn, $sql);
+		}
+		
+		
 		
 		if($result)
-			header("location: login.php");
+			header("location: profile.php");
 		
 		
 	}
@@ -36,14 +79,7 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Exclusive Cars</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="signup.php">Sign Up</a></li>
-      </ul>
-        <ul class="right hide-on-med-and-down">
-        <li><a href="login.php">Log In</a></li>
-      </ul>
-
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
       </ul>

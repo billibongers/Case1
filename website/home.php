@@ -1,3 +1,6 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,12 +15,12 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="profile.php">Log out</a></li>
+        <li><a href="logout.php">Log out</a></li>
       </ul>
         <ul class="right hide-on-med-and-down">
-        <li><a href="logout.php">Profile</a></li>
+        <li><a href="profile.php">Profile</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
 		<form method="post">
@@ -38,7 +41,7 @@
     <div class="container">
     <br><br>
 	<div>
-		 <table class="striped">
+	<!--	 <table class="striped">
         <thead>
           <tr>
               <th data-field="id">Product Image</th>
@@ -47,23 +50,67 @@
           </tr>
         </thead>
 
-        <tbody>
+        <tbody> -->
 	<?php
-		include("connect.php");
-		$sql = "SELECT * FROM adverts";
-		$result = mysqli_query($conn, $sql);
-		while($row = mysqli_fetch_assoc($result))
+		if(!isset($_POST['search']))
 		{
-		 echo "<tr>";
-		    echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
-		    echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
-    <li>
-      <div class='collapsible-header'>View More</div>
-      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
-    </li></td>";
-		    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
-		  echo "</tr>";
-		  }
+			echo	"<table class='striped'>";
+			echo "<thead>";
+			echo "<tr>";
+              echo  "<th data-field='id'>Product Image</th>";
+              echo  "<th data-field='name'>Product Overview</th>";
+              echo "<th data-field='price'>Contact Seller</th>";
+		echo "</tr>";
+       echo "</thead>";
+
+       echo "<tbody>";
+				include("connect.php");
+				$sql = "SELECT * FROM adverts";
+				$result = mysqli_query($conn, $sql);
+				while($row = mysqli_fetch_assoc($result))
+				{
+				 echo "<tr>";
+				    echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
+				    echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
+		    <li>
+		      <div class='collapsible-header'>View More</div>
+		      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
+		    </li></td>";
+				    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+				  echo "</tr>";
+				  }
+		}
+		else
+		{
+			include("connect.php");
+			$searchTerm = $_POST['search'];
+			$sql = "SELECT * FROM adverts WHERE name='$searchTerm'";
+			
+			echo	"<table class='striped'>";
+			echo "<thead>";
+			echo "<tr>";
+			echo  "<th data-field='id'>Product Image</th>";
+			echo  "<th data-field='name'>Product Overview</th>";
+			echo "<th data-field='price'>Contact Seller</th>";
+			echo "</tr>";
+			echo "</thead>";
+			echo "<tbody>";
+			$result = mysqli_query($conn, $sql);
+			while($row = mysqli_fetch_assoc($result))
+			{
+				 echo "<tr>";
+				echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
+				echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
+					<li>
+					<div class='collapsible-header'>View More</div>
+					<div class='collapsible-body'><p>".$row['product_description']."</p></div>
+					</li></td>";
+				echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+				echo "</tr>";
+			}
+			echo "</tbody>";
+			echo "</table>";
+		}
 	  ?>
         </tbody>
       </table>

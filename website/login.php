@@ -4,7 +4,7 @@
 		include("connect.php");
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-	  $password = hash('sha256', $password);
+	//  $password = hash('sha256', $password);
 		
 		$sql = "SELECT * FROM members where username = '$username' AND password ='$password'";
 		$result = mysqli_query($conn, $sql);
@@ -13,9 +13,10 @@
 			if(mysqli_num_rows($result) > 0)
 			{
 				$row = mysqli_fetch_assoc($result);
+				session_start();
 				$_SESSION["id"] = $row['member_id'];
 				$_SESSION["username"] = $row['UserName'];
-        header("location: home.php");
+				header("location: home.php");
 			}
 			else
 				echo "nah";

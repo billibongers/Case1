@@ -1,9 +1,12 @@
+<?php
+	session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Exclusive Cars</title>
+  <title>Home</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -14,27 +17,106 @@
   <nav class="red" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="signup.php">Sign Up</a></li>
+        <li><a href="profile.php">Log out</a></li>
+      </ul>
+       <ul class="right hide-on-med-and-down">
+        <li><a href="addProduct.php">Add Product</a></li>
       </ul>
         <ul class="right hide-on-med-and-down">
-        <li><a href="login.php">Log In</a></li>
+        <li><a href="logout.php">Profile</a></li>
       </ul>
-
+      <ul class="right hide-on-med-and-down">
+		<form method="post">
+					<div class="input-field">
+						  <input id="search" type="search" name="search" required>
+						  <label for="search"><i class="material-icons">search</i></label>
+						  <i class="material-icons">close</i>
+					</div>
+				</form>
+	</ul>
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
+  <center>
+	<div>
+		<?php
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+			echo "<img alt='No Image' src=".$row['location']." />"
+		?>
+	</div>
+	<div>
+		  <a class="waves-effect waves-light btn-large" href="edit.php">Edit profile information</a>
+	</div>
+	<div>
+		<?php
+			include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		
+			echo  "Name: ".$row['FirstName']." ".$row['LastName'];
+			echo "<br>";
+			echo "Address: ".$row['Address'];
+			echo "<br>";
+			echo "Contact No: ".$row['ContactNo'];
+			echo "<br>";
+			echo "Email: ".$row['Url'];
+		?>
+	</div>
+</center>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
-      <br><br>
-      <div>
-        <img src="img/name.png" width="200" height="200" />
-      </div>
-      <div class="row center">
-        <img src="img/logo2.png"/>
-        <h5 class="header col s12 light">Welcome to exclusive cars. Your one stop shop to buy or sell your car! <br> Register now to get the freshest deals... </h5>
+    <br><br>
+	<div>
+		 <table class="striped">
+        <thead>
+          <tr>
+              <th data-field="id">Product Image</th>
+              <th data-field="name">Product Overview</th>
+              <th data-field="price">Contact Seller</th>
+          </tr>
+        </thead>
+
+        <tbody>
+	<?php
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM adverts where member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		while($row = mysqli_fetch_assoc($result))
+		{
+		 echo "<tr>";
+		    echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
+		    echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
+    <li>
+      <div class='collapsible-header'>View More</div>
+      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
+    </li></td>";
+		    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+		  echo "</tr>";
+		  }
+	  ?>
+        </tbody>
+      </table>
+	</div>
+  </div>
+   <div id="modal1" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
       </div>
      <!-- <div class="row center">
         <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
@@ -80,13 +162,8 @@
 
     </div>
     <br><br>
-
-    <div class="section">
-
-    </div>
   </div>
-
-   <footer class="page-footer red">
+<footer class="page-footer red">
     <div class="container">
       <div class="row">
         <div class="col l6 s12">
@@ -94,11 +171,14 @@
           <p class="grey-text text-lighten-4">Your one stop shop to buy or sell your car!</p>
   </footer>
 
-
   <!--  Scripts-->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  
 
   </body>
 </html>
+
+
+
