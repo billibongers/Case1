@@ -19,7 +19,7 @@
 				header("location: home.php");
 			}
 			else
-				echo "nah";
+				echo "Login Failed Try again";
 		}
 		
 		

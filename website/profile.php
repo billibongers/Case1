@@ -88,6 +88,7 @@
           <tr>
               <th data-field="id">Product Image</th>
               <th data-field="name">Product Overview</th>
+              <th data-field="deletePost">Delete Post</th>
           </tr>
         </thead>
 
@@ -95,7 +96,7 @@
 	<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
-		$sql = "SELECT * FROM adverts where member_id='$id'";
+		$sql = "SELECT * FROM adverts where member_id='$id' ORDER BY id DESC";
 		$result = mysqli_query($conn, $sql);
 		while($row = mysqli_fetch_assoc($result))
 		{
@@ -106,6 +107,9 @@
       <div class='collapsible-header'>View More</div>
       <div class='collapsible-body'><p>".$row['product_description']."</p></div>
     </li></td>";
+
+        echo "<td><form class='col s12' method='post' action='deletePost.php'><input type='hidden' value=".$row['id']." name='ad_id' id='ad_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['id']."'>Delete Post</button></form></td>";
+      echo "</tr>";
 		  }
 	  ?>
         </tbody>
