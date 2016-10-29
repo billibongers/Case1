@@ -13,8 +13,6 @@
 		$con = $_POST['num'];
 		$id = $_SESSION["id"]; 
 		
-		//echo $email;
-		
 		if($firstName != '')
 		{
 			$sql = "UPDATE members SET FirstName = '$firstName' WHERE member_id='$id'";
@@ -29,7 +27,7 @@
 		
 		if($username != '')
 		{
-			$sql = "UPDATE members SET UserName = '$userName' WHERE member_id='$id'";
+			$sql = "UPDATE members SET UserName = '$username' WHERE member_id='$id'";
 			$result = mysqli_query($conn, $sql);
 		}
 		
