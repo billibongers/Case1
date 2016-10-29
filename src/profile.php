@@ -120,8 +120,26 @@ $image=mysqli_query($mysqli, "SELECT * FROM members WHERE member_id='$id'");
 <ul id="sddm1">
 	<li><a href="editpic.php"><img src="img/pencil.png" width="17" height="17" border="0" /> &nbsp;Change Picture</a>
 	</li>
+	<li><a href="Home.php"><img src="img/wal.png" width="17" height="17" border="0" /> &nbsp;Wall</a>
 	</li>
 	<li><a href="info.php"><img src="img/message.png" width="16" height="12" border="0" /> &nbsp;Info</a>
+	</li>
+	<li><a href="photos.php"><img src="img/photos.png" width="16" height="12" border="0" /> &nbsp;Photos(<?php
+$result = mysqli_query($mysqli,"SELECT * FROM photos WHERE member_id='".$_SESSION['SESS_MEMBER_ID'] ."'");
+	
+	$numberOfRows = MYSQLI_NUM_ROWS($result);	
+	
+	echo '<font color="red">' . $numberOfRows . '</font>'; 
+	?>)	</a>
+	</li>
+	<!--<li><a href="request.php"><img src="img/friends.png" width="16" height="12" border="0" /> &nbsp;Friends Request-->
+	<?php 
+					
+				/*	$member_id=$_SESSION['SESS_MEMBER_ID'];
+					$seeall=mysqli_query($mysqli,"SELECT * FROM friends WHERE friends_with='$member_id' AND status='unconf'") or die(mysql_error());
+					$numberOFRows=mysqli_num_rows($seeall);
+					echo '<font color="red">'.$numberOFRows.'</font>';*/?>
+					</a>
 	</li>
 	<li><a href="message.php"><img src="img/m.png" width="16" height="12" border="0" /> &nbsp;Message&nbsp(<?php 
 $member_id = $_SESSION['SESS_MEMBER_ID'];
@@ -133,9 +151,10 @@ $received = mysqli_query($mysqli, "SELECT * FROM messages WHERE recipient = '$me
 ?>)
 	</a>
 	</li>
-
+	
+	<li><hr width="150"></li>
 	<li>
-	</ul>						
+	</ul>					
   </div>
   <div class="righttop1">
        <div class="search">

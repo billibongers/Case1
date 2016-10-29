@@ -5,7 +5,7 @@
 //define('DB_PASS', '');
 //define('DB_NAME', 'hello');
 
-$mysqli = new mysqli ('localhost', 'root', 'rayban', 'hello');
+$mysqli = new mysqli ('localhost', 'root', '', 'new_hello');
 	if(!$mysqli){
 		die('Could not connect: ' . mysql_error());
 	}

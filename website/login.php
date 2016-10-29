@@ -4,7 +4,7 @@
 		include("connect.php");
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-	 $password = hash('sha256', $password);
+		$password = hash('sha256', $password);
 		
 		$sql = "SELECT * FROM members where username = '$username' AND password ='$password'";
 		$result = mysqli_query($conn, $sql);
@@ -19,7 +19,11 @@
 				header("location: home.php");
 			}
 			else
+<<<<<<< HEAD
 				echo "Login Failed Try again";
+=======
+			{echo "nah";}
+>>>>>>> 3a783fce562b8acd9ebc1a4517da466883578b3a
 		}
 		
 		
@@ -39,15 +43,12 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="signup.php">Sign Up</a></li>
       </ul>
         <ul class="right hide-on-med-and-down">
         <li><a href="login.php">Log In</a></li>
-      </ul>
-       <ul class="right hide-on-med-and-down">
-        <li><a href="home.php">Home</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

@@ -7,23 +7,7 @@
 		$productPrice = $_POST['price'];
 		$description = $_POST['description'];
 		$condition = $_POST['condition'];
-			$category = "None";
-			
-		if(isset($_POST['group1']))
-			$category = "SUV";
-			
-		if(isset($_POST['group2']))
-			$category = "Sedan";
-			
-		if(isset($_POST['group3']))
-			$category = "Hatch";
-			
-		if(isset($_POST['group4']))
-			$category = "Bike";
-			
-		if(isset($_POST['group5']))
-			$category = "Bakkie";
-			
+		$category = "SUV";
 		$id = $_SESSION["id"];
 		echo $productName;
 		echo $productPrice;
@@ -34,10 +18,10 @@
 		
 		$sql = "INSERT INTO adverts (name, price, member_id, product_condition, product_description, category) VALUES ('$productName', '$productPrice' , '$id', '$condition', '$description', '$category')";
 		$result = mysqli_query($conn, $sql);
-		//echo "here";
+		echo "here";
 		
-		//if($result)
-		//	header("location: profile.php");
+		if($result)
+			header("location: profile.php");
 		
 		
 	}
@@ -56,7 +40,7 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
       </ul>
@@ -104,23 +88,23 @@
       <div>
       <p>Category</p>
 	<p>
-      <input name="group1" type="radio" id="test1"/>
+      <input name="group1" type="radio" id="test1" />
       <label for="test1">SUV</label>
     </p>
     <p>
-      <input name="group2" type="radio" id="test2" />
+      <input name="group1" type="radio" id="test2" />
       <label for="test2">Sedan</label>
     </p>
      <p>
-      <input name="group3" type="radio" id="test3" />
+      <input name="group1" type="radio" id="test3" />
       <label for="test3">Hatch</label>
     </p>
       <p>
-      <input name="group4" type="radio" id="test4" />
+      <input name="group1" type="radio" id="test4" />
       <label for="test4">Bike</label>
     </p>
       <p>
-      <input name="group5" type="radio" id="test5" />
+      <input name="group1" type="radio" id="test5" />
       <label for="test5">Bakkie</label>
     </p>
     </div>

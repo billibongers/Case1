@@ -1,32 +1,36 @@
 <?php
 	session_start();
-	if(isset($_POST['submit']))
-	{
-		echo "yeah";
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Profile</title>
+  <title>Home</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
-        <li><a href="profile.php">Profile</a></li>
+      	<li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
       </ul>
        <ul class="right hide-on-med-and-down">
+        <li><a href="addProduct.php">Add Product</a></li>
+      </ul>
+        <ul class="right hide-on-med-and-down">
+        <li><a href="profile.php">Profile</a></li>
+      </ul>
+	  </ul>
+        <ul class="right hide-on-med-and-down">
         <li><a href="home.php">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
@@ -75,9 +79,6 @@
 			echo "Email: ".$row['Url'];
 		?>
 	</div>
-  <div>
-    <a class="waves-effect waves-light btn-large" href="addProduct.php">Add Product</a>
-  </div>
 </center>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -88,7 +89,11 @@
           <tr>
               <th data-field="id">Product Image</th>
               <th data-field="name">Product Overview</th>
+<<<<<<< HEAD
               <th data-field="deletePost">Delete Post</th>
+=======
+              <th data-field="price">Contact Seller</th>
+>>>>>>> 3a783fce562b8acd9ebc1a4517da466883578b3a
           </tr>
         </thead>
 
@@ -96,7 +101,12 @@
 	<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
+<<<<<<< HEAD
 		$sql = "SELECT * FROM adverts where member_id='$id' ORDER BY id DESC";
+=======
+		$sql = "SELECT * FROM adverts where member_id='$id'";
+		
+>>>>>>> 3a783fce562b8acd9ebc1a4517da466883578b3a
 		$result = mysqli_query($conn, $sql);
 		while($row = mysqli_fetch_assoc($result))
 		{
@@ -107,9 +117,14 @@
       <div class='collapsible-header'>View More</div>
       <div class='collapsible-body'><p>".$row['product_description']."</p></div>
     </li></td>";
+<<<<<<< HEAD
 
         echo "<td><form class='col s12' method='post' action='deletePost.php'><input type='hidden' value=".$row['id']." name='ad_id' id='ad_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['id']."'>Delete Post</button></form></td>";
       echo "</tr>";
+=======
+		    echo "<td><a href='createmessage.php'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></a></td>";
+		  echo "</tr>";
+>>>>>>> 3a783fce562b8acd9ebc1a4517da466883578b3a
 		  }
 	  ?>
         </tbody>
