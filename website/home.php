@@ -80,7 +80,7 @@
 		      <div class='collapsible-header'>View More</div>
 		      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
 		    </li></td>";
-				    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+				   echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
 				  echo "</tr>";
 				  }
 		}
