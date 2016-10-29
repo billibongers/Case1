@@ -29,7 +29,7 @@
 		
 		if($username != '')
 		{
-			$sql = "UPDATE members SET UserName = '$userName' WHERE member_id='$id'";
+			$sql = "UPDATE members SET UserName = '$username' WHERE member_id='$id'";
 			$result = mysqli_query($conn, $sql);
 		}
 		

@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	include("connect.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,7 +13,6 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
   <nav class="red" role="navigation">
@@ -20,16 +20,13 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
-      <ul class="right hide-on-med-and-down">
-      	<li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
-      </ul>
        <ul class="right hide-on-med-and-down">
         <li><a href="addProduct.php">Add Product</a></li>
       </ul>
         <ul class="right hide-on-med-and-down">
         <li><a href="profile.php">Profile</a></li>
       </ul>
-	  </ul>
+	   </ul>
         <ul class="right hide-on-med-and-down">
         <li><a href="home.php">Home</a></li>
       </ul>
@@ -53,32 +50,68 @@
 		<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
-		$sql = "SELECT * FROM members WHERE member_id='$id'";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
-			echo "<img alt='No Image' src=".$row['location']." />"
-		?>
-	</div>
-	<div>
-		  <a class="waves-effect waves-light btn-large" href="edit.php">Edit profile information</a>
-	</div>
-	<div>
-		<?php
-			include("connect.php");
-		$id = $_SESSION["id"];
-		$sql = "SELECT * FROM members WHERE member_id='$id'";
-		$result = mysqli_query($conn, $sql);
-		$row = mysqli_fetch_assoc($result);
+		$rec_id = 10;
 		
-			echo  "Name: ".$row['FirstName']." ".$row['LastName'];
-			echo "<br>";
-			echo "Address: ".$row['Address'];
-			echo "<br>";
-			echo "Contact No: ".$row['ContactNo'];
-			echo "<br>";
-			echo "Email: ".$row['Url'];
+		// Getting senders information
+		$sql="SELECT FirstName FROM members where member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$name = mysqli_fetch_assoc($result);
+		$sender = $name['FirstName'];
+		// Getting receivers information 
+		$sql="SELECT FirstName FROM members where member_id='$rec_id'";
+		$result = mysqli_query($conn, $sql);
+		$name = mysqli_fetch_assoc($result);
+		$receiver = $name['FirstName'];
+		
 		?>
+		
 	</div>
+	   
+  <div class="row">
+    
+      	<?php 
+				
+				$member_id = $_SESSION['id'];
+									$post = mysqli_query($conn, "SELECT * FROM messages WHERE recipient = '$id' ORDER by datetime DESC")or die(mysqli_error());
+									while($row = mysqli_fetch_array($post)){
+										$id = $row['receiver'];
+										//$_SESSION['reply'] = $id;
+										//echo 'This is sim';
+										//echo $_SESSION['reply'];
+										$hu_u = mysqli_query($conn, "SELECT * FROM members WHERE member_id = '$id'")or die(mysql_error());
+										$rows = mysqli_fetch_array($hu_u);
+										$iyaid = $row['message_id'];
+										echo'<div class="information">';
+										echo'<hr width=640>
+										</br>';
+											$sql=mysqli_query($conn, "SELECT * FROM members WHERE member_id='$id'") or die(mysql_error());
+											
+											$getpic=mysqli_fetch_array($sql);
+										echo "<input type='hidden' value='".$row['message_id']."' name='cantseeme'/>
+											<div>
+												<div class='picofjoke'>
+													From:   <img src='".$getpic['profImage']."' width='50' height ='50' alt=''/>".' '.$getpic['FirstName']." ".$getpic['LastName']."</div>
+												<div class = 'postcon'><br />
+												".$row['content']."<br />
+												<br />
+												Message received on ".$row['datetime']."<hr width='640'> 
+												<a href='replies.php?id=".$row['message_id']."' rel='facebox' style='text-decoration:none;'></a>
+												
+												<a href='deletemessage.php?message_id=".$row['message_id']."' style='text-decoration:none;'><button class='waves-effect waves-light btn'>Delete</button></a>
+												<form action='reply.php' method='post'>
+													<input type='hidden' name='replyTo' value='".$getpic['member_id']."'/>
+													</br>
+													<button class='waves-effect waves-light btn' type='submit'>Reply</button>
+												</form>
+												</br>
+												</div>
+											</div>";
+											
+									}
+		?>
+
+  </div>
+        
 </center>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -87,31 +120,14 @@
 		 <table class="striped">
         <thead>
           <tr>
-              <th data-field="id">Product Image</th>
-              <th data-field="name">Product Overview</th>
-              <th data-field="price">Contact Seller</th>
+           
           </tr>
         </thead>
 
         <tbody>
 	<?php
 		include("connect.php");
-		$id = $_SESSION["id"];
-		$sql = "SELECT * FROM adverts where member_id='$id'";
-		
-		$result = mysqli_query($conn, $sql);
-		while($row = mysqli_fetch_assoc($result))
-		{
-		 echo "<tr>";
-		    echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
-		    echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
-    <li>
-      <div class='collapsible-header'>View More</div>
-      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
-    </li></td>";
-		    echo "<td><a href='createmessage.php'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></a></td>";
-		  echo "</tr>";
-		  }
+	
 	  ?>
         </tbody>
       </table>
@@ -168,7 +184,7 @@
           </div>
         </div>
       </div> -->
-
+	
     </div>
     <br><br>
   </div>

@@ -76,7 +76,7 @@
 		      <div class='collapsible-header'>View More</div>
 		      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
 		    </li></td>";
-				    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+				    echo "<td><a href='createmessage.php'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></a></td>";
 				  echo "</tr>";
 				  }
 		}
