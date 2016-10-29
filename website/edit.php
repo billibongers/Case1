@@ -13,8 +13,6 @@
 		$con = $_POST['num'];
 		$id = $_SESSION["id"]; 
 		
-		//echo $email;
-		
 		if($firstName != '')
 		{
 			$sql = "UPDATE members SET FirstName = '$firstName' WHERE member_id='$id'";
