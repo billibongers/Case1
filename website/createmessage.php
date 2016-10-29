@@ -16,7 +16,7 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>

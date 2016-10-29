@@ -7,11 +7,12 @@
 		$lastName = $_POST['last_name'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		//$password = hash('sha256', $password);
+		$password = hash('sha256', $password);
 		$email = $_POST['email'];
 		$address = $_POST['address'];
 		$con = $_POST['num'];
-		$id = $_SESSION["id"]; 
+		$id = $_SESSION["id"];
+    $interests = $_SESSION["interests"]; 
 		
 		//echo $email;
 		
@@ -56,6 +57,12 @@
 			$sql = "UPDATE members SET ContactNo = '$con' WHERE member_id='$id'";
 			$result = mysqli_query($conn, $sql);
 		}
+
+    if($interests != '')
+    {
+      $sql = "UPDATE members SET Interests = '$interests' WHERE member_id='$id'";
+      $result = mysqli_query($conn, $sql);
+    }
 		
 		
 		
@@ -70,7 +77,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Sign Up</title>
+  <title>Edit Profile</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -80,6 +87,18 @@
 <body>
   <nav class="red" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
+       <ul class="right hide-on-med-and-down">
+        <li><a href="logout.php">Log out</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="profile.php">Profile</a></li>
+      </ul>
+       <ul class="right hide-on-med-and-down">
+        <li><a href="home.php">Home</a></li>
+      </ul>
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
       </ul>
@@ -93,44 +112,59 @@
     <form class="col s12" method="post" action="">
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Placeholder" id="first_name" name="first_name" type="text" class="validate">
+          <input placeholder="Leave empty if you don't want to change" id="first_name" name="first_name" type="text" class="validate">
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input id="last_name" name="last_name" type="text" class="validate">
+          <input placeholder="Leave empty if you don't want to change" id="last_name" name="last_name" type="text" class="validate">
           <label for="last_name">Last Name</label>
         </div>
       </div>
     <div class="row">
         <div class="input-field col s12">
-          <input id="username" name="username" type="text" class="validate">
+          <input placeholder="Leave empty if you don't want to change" id="username" name="username" type="text" class="validate">
           <label for="password">Username</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="password" name="password" type="password" class="validate">
+          <input placeholder="Leave empty if you don't want to change" id="password" name="password" type="password" class="validate">
           <label for="password">Password</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="address" name="address" type="text" class="validate">
+          <input placeholder="Leave empty if you don't want to change" id="address" name="address" type="text" class="validate">
           <label for="address">Address</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="num" name="num" type="text" class="validate">
+          <input placeholder="Leave empty if you don't want to change" id="num" name="num" type="text" class="validate">
           <label for="num">Contact No</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input id="email" name="email" type="email" class="validate">
+          <input placeholder="Leave empty if you don't want to change" id="email" name="email" type="email" class="validate">
           <label for="email">Email</label>
         </div>
       </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input placeholder="Leave empty if you don't want to change" id="interests" name="interests" type="text" class="validate">
+          <label for="interests">Interests</label>
+        </div>
+      </div>
+      <div class="file-field input-field">
+        <div class="btn">
+          <span>Choose Profile Picture</span>
+          <input type="file" name="propic" id="propic">
+        </div>
+        <div class="file-path-wrapper">
+          <input class="file-path validate" type="text" placeholder="Upload image of product">
+      </div>
+    </div>
       <button class="waves-effect waves-light btn" type="submit" name="submit">submit<i class="material-icons right">send</i></button>
     </form>
   </div>
