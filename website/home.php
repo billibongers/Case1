@@ -22,6 +22,9 @@
         <ul class="right hide-on-med-and-down">
         <li><a href="profile.php">Profile</a></li>
       </ul>
+       <ul class="right hide-on-med-and-down">
+        <li><a href="home.php">Home</a></li>
+      </ul>
       <ul class="right hide-on-med-and-down">
 		<form method="post">
 					<div class="input-field">
