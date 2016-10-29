@@ -1,6 +1,5 @@
 <?php
 	session_start();
-  $seller_id = $_POST['poster_id'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,7 +54,8 @@
 	<div>
 		<?php
 			include("connect.php");
-		$id = $_SESSION["id"];
+		$seller_id = $_POST['poster_id'];
+    echo "$seller_id";
 		$sql = "SELECT * FROM members WHERE member_id='$seller_id'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
