@@ -4,11 +4,7 @@
 		include("connect.php");
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-<<<<<<< HEAD
 		$password = hash('sha256', $password);
-=======
-	 $password = hash('sha256', $password);
->>>>>>> 3e8f6ac65cd51a0e6d00d7cbcbefb52c2ecdf3c9
 		
 		$sql = "SELECT * FROM members where username = '$username' AND password ='$password'";
 		$result = mysqli_query($conn, $sql);
@@ -43,19 +39,12 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-<<<<<<< HEAD
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
-=======
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
->>>>>>> 3e8f6ac65cd51a0e6d00d7cbcbefb52c2ecdf3c9
       <ul class="right hide-on-med-and-down">
         <li><a href="signup.php">Sign Up</a></li>
       </ul>
         <ul class="right hide-on-med-and-down">
         <li><a href="login.php">Log In</a></li>
-      </ul>
-       <ul class="right hide-on-med-and-down">
-        <li><a href="home.php">Home</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

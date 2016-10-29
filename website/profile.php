@@ -1,16 +1,12 @@
 <?php
 	session_start();
-	if(isset($_POST['submit']))
-	{
-		echo "yeah";
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Profile</title>
+  <title>Home</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -20,31 +16,21 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-<<<<<<< HEAD
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
       	<li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
-=======
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="logout.php">Log out</a></li>
->>>>>>> 3e8f6ac65cd51a0e6d00d7cbcbefb52c2ecdf3c9
       </ul>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="profile.php">Profile</a></li>
+       <ul class="right hide-on-med-and-down">
+        <li><a href="addProduct.php">Add Product</a></li>
       </ul>
-<<<<<<< HEAD
         <ul class="right hide-on-med-and-down">
         <li><a href="profile.php">Profile</a></li>
       </ul>
 	  </ul>
         <ul class="right hide-on-med-and-down">
-=======
-       <ul class="right hide-on-med-and-down">
->>>>>>> 3e8f6ac65cd51a0e6d00d7cbcbefb52c2ecdf3c9
         <li><a href="home.php">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
@@ -93,9 +79,6 @@
 			echo "Email: ".$row['Url'];
 		?>
 	</div>
-  <div>
-    <a class="waves-effect waves-light btn-large" href="addProduct.php">Add Product</a>
-  </div>
 </center>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -106,6 +89,7 @@
           <tr>
               <th data-field="id">Product Image</th>
               <th data-field="name">Product Overview</th>
+              <th data-field="price">Contact Seller</th>
           </tr>
         </thead>
 
@@ -125,11 +109,8 @@
       <div class='collapsible-header'>View More</div>
       <div class='collapsible-body'><p>".$row['product_description']."</p></div>
     </li></td>";
-<<<<<<< HEAD
 		    echo "<td><a href='createmessage.php'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></a></td>";
 		  echo "</tr>";
-=======
->>>>>>> 3e8f6ac65cd51a0e6d00d7cbcbefb52c2ecdf3c9
 		  }
 	  ?>
         </tbody>
