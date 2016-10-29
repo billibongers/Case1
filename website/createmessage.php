@@ -50,7 +50,7 @@
 		<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
-		$rec_id = 10;
+		$rec_id = 9;
 		
 		// Getting senders information
 		$sql="SELECT FirstName FROM members where member_id='$id'";

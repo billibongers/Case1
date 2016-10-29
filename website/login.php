@@ -4,7 +4,7 @@
 		include("connect.php");
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$password = hash('sha256', $password);
+		//$password = hash('sha256', $password);
 		
 		$sql = "SELECT * FROM members where username = '$username' AND password ='$password'";
 		$result = mysqli_query($conn, $sql);
@@ -19,11 +19,7 @@
 				header("location: home.php");
 			}
 			else
-<<<<<<< HEAD
 				echo "Login Failed Try again";
-=======
-			{echo "nah";}
->>>>>>> 3a783fce562b8acd9ebc1a4517da466883578b3a
 		}
 		
 		

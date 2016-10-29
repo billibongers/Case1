@@ -1,16 +1,12 @@
 <?php
 	session_start();
-	if(isset($_POST['submit']))
-	{
-		echo "yeah";
-	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Profile</title>
+  <title>Sellers Profile</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -23,14 +19,11 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
-      </ul>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="profile.php">Profile</a></li>
-      </ul>
        <ul class="right hide-on-med-and-down">
-        <li><a href="home.php">Home</a></li>
+        <li><a href="createmessage.php">Send Message</a></li>
+      </ul>
+        <ul class="right hide-on-med-and-down">
+        <li><a href="profile.php">Profile</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
 		<form method="post">
@@ -52,20 +45,18 @@
 		<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
-		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$sql = "SELECT * FROM members WHERE member_id='$seller_id'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 			echo "<img alt='No Image' src=".$row['location']." />"
 		?>
 	</div>
 	<div>
-		  <a class="waves-effect waves-light btn-large" href="edit.php">Edit profile information</a>
-	</div>
-	<div>
 		<?php
 			include("connect.php");
-		$id = $_SESSION["id"];
-		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$seller_id = $_POST['poster_id'];
+    echo "$seller_id";
+		$sql = "SELECT * FROM members WHERE member_id='$seller_id'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
 		
@@ -78,9 +69,6 @@
 			echo "Email: ".$row['Url'];
 		?>
 	</div>
-  <div>
-    <a class="waves-effect waves-light btn-large" href="addProduct.php">Add Product</a>
-  </div>
 </center>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -91,7 +79,6 @@
           <tr>
               <th data-field="id">Product Image</th>
               <th data-field="name">Product Overview</th>
-              <th data-field="deletePost">Delete Post</th>
           </tr>
         </thead>
 
@@ -99,7 +86,7 @@
 	<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
-		$sql = "SELECT * FROM adverts where member_id='$id' ORDER BY id DESC";
+		$sql = "SELECT * FROM adverts where member_id='$id'";
 		$result = mysqli_query($conn, $sql);
 		while($row = mysqli_fetch_assoc($result))
 		{
@@ -110,9 +97,6 @@
       <div class='collapsible-header'>View More</div>
       <div class='collapsible-body'><p>".$row['product_description']."</p></div>
     </li></td>";
-
-        echo "<td><form class='col s12' method='post' action='deletePost.php'><input type='hidden' value=".$row['id']." name='ad_id' id='ad_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['id']."'>Delete Post</button></form></td>";
-      echo "</tr>";
 		  }
 	  ?>
         </tbody>
@@ -140,37 +124,6 @@
 
   <div class="container">
     <div class="section">
-
-      <!--   Icon Section   -->
- <!--     <div class="row">
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">flash_on</i></h2>
-            <h5 class="center">Speeds up development</h5>
-
-            <p class="light">We did most of the heavy lifting for you to provide a default stylings that incorporate our custom components. Additionally, we refined animations and transitions to provide a smoother experience for developers.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">group</i></h2>
-            <h5 class="center">User Experience Focused</h5>
-
-            <p class="light">By utilizing elements and principles of Material Design, we were able to create a framework that incorporates components and animations that provide more feedback to users. Additionally, a single underlying responsive system across all platforms allow for a more unified user experience.</p>
-          </div>
-        </div>
-
-        <div class="col s12 m4">
-          <div class="icon-block">
-            <h2 class="center light-blue-text"><i class="material-icons">settings</i></h2>
-            <h5 class="center">Easy to work with</h5>
-
-            <p class="light">We have provided detailed documentation as well as specific code examples to help new users get started. We are also always open to feedback and can answer any questions a user may have about Materialize.</p>
-          </div>
-        </div>
-      </div> -->
-
     </div>
     <br><br>
   </div>

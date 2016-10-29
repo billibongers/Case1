@@ -1,8 +1,8 @@
 <?php
 	$servername = "localhost";
-	$database = "new_hello";
+	$database = "hello";
 	$username = "root";
-	$password = "";
+	$password = "rayban";
 	
 	//Connect to database
 	$conn  = mysqli_connect($servername, $username, $password);
