@@ -78,7 +78,7 @@
           $sql2 = "SELECT * FROM members WHERE member_id = '$id'";
           $result2 = mysqli_query($conn,$sql2);
           $row2 = mysqli_fetch_assoc($result2);
-
+       
 				 echo "<tr>";
             echo "<td>Name: ".$row2['UserName']."<br><img width=150 height=150 alt='Unable to View' src = '".$row2['location']."'></td>";
 				    echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
@@ -87,7 +87,7 @@
 		      <div class='collapsible-header'>View More</div>
 		      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
 		    </li></td>";
-				   echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
+				   echo "<td><form class='col s12' method='post' action='createmessage.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
 				  echo "</tr>";
 				  }
 		}
@@ -119,7 +119,7 @@
 						<div class='collapsible-header'>View More</div>
 						<div class='collapsible-body'><p>".$row['product_description']."</p></div>
 						</li></td>";
-					echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
+					echo "<td><form class='col s12' method='post' action='createmessage.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
 					echo "</tr>";
 				}
 			}
@@ -140,7 +140,7 @@
 							<div class='collapsible-header'>View More</div>
 							<div class='collapsible-body'><p>".$row['product_description']."</p></div>
 							</li></td>";
-						echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
+						echo "<td><form class='col s12' method='post' action='createmessage.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
 						echo "</tr>";
 					}
 				}
@@ -169,7 +169,7 @@
 									<div class='collapsible-header'>View More</div>
 									<div class='collapsible-body'><p>".$row2['product_description']."</p></div>
 									</li></td>";
-								echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row2['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row2['member_id']."'>Contact</button></form></td>";
+								echo "<td><form class='col s12' method='post' action='createmessage.php'><input type='hidden' value=".$row2['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row2['member_id']."'>Contact</button></form></td>";
 								echo "</tr>";
 							}
 							
