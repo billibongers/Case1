@@ -16,7 +16,7 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
@@ -79,7 +79,6 @@
           <tr>
               <th data-field="id">Product Image</th>
               <th data-field="name">Product Overview</th>
-              <th data-field="price">Contact Seller</th>
           </tr>
         </thead>
 
@@ -98,8 +97,6 @@
       <div class='collapsible-header'>View More</div>
       <div class='collapsible-body'><p>".$row['product_description']."</p></div>
     </li></td>";
-		    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
-		  echo "</tr>";
 		  }
 	  ?>
         </tbody>

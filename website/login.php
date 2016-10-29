@@ -4,7 +4,7 @@
 		include("connect.php");
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-	//  $password = hash('sha256', $password);
+	 $password = hash('sha256', $password);
 		
 		$sql = "SELECT * FROM members where username = '$username' AND password ='$password'";
 		$result = mysqli_query($conn, $sql);
@@ -39,12 +39,15 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="signup.php">Sign Up</a></li>
       </ul>
         <ul class="right hide-on-med-and-down">
         <li><a href="login.php">Log In</a></li>
+      </ul>
+       <ul class="right hide-on-med-and-down">
+        <li><a href="home.php">Home</a></li>
       </ul>
 
       <ul id="nav-mobile" class="side-nav">

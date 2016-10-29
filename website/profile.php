@@ -19,15 +19,15 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
-        <li><a href="profile.php">Log out</a></li>
+        <li><a href="logout.php">Log out</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="profile.php">Profile</a></li>
       </ul>
        <ul class="right hide-on-med-and-down">
-        <li><a href="addProduct.php">Add Product</a></li>
-      </ul>
-        <ul class="right hide-on-med-and-down">
-        <li><a href="logout.php">Profile</a></li>
+        <li><a href="home.php">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
 		<form method="post">
@@ -75,6 +75,9 @@
 			echo "Email: ".$row['Url'];
 		?>
 	</div>
+  <div>
+    <a class="waves-effect waves-light btn-large" href="addProduct.php">Add Product</a>
+  </div>
 </center>
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
@@ -85,7 +88,6 @@
           <tr>
               <th data-field="id">Product Image</th>
               <th data-field="name">Product Overview</th>
-              <th data-field="price">Contact Seller</th>
           </tr>
         </thead>
 
@@ -104,8 +106,6 @@
       <div class='collapsible-header'>View More</div>
       <div class='collapsible-body'><p>".$row['product_description']."</p></div>
     </li></td>";
-		    echo "<td><button class='waves-effect waves-light btn' type='submit' name='submit'  id='contact' value=".$row['member_id']."'>Contact</button></td>";
-		  echo "</tr>";
 		  }
 	  ?>
         </tbody>
