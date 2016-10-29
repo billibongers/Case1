@@ -84,7 +84,7 @@
 		{
 			include("connect.php");
 			$searchTerm = $_POST['search'];
-			$sql = "SELECT * FROM adverts WHERE name='$searchTerm'";
+			$sql = "SELECT * FROM adverts WHERE name LIKE '%$searchTerm%'";
 			
 			echo	"<table class='striped'>";
 			echo "<thead>";
@@ -96,6 +96,17 @@
 			echo "</thead>";
 			echo "<tbody>";
 			$result = mysqli_query($conn, $sql);
+			if(mysqli_num_rows($result) == 0)
+			{
+				$sql = "SELECT * FROM adverts WHERE category LIKE '%$searchTerm%'";
+				$result = mysqli_query($conn, $sql);
+				
+				if(mysqli_num_rows($result) == 0)
+				{
+					$sql = "SELECT * FROM members WHERE UserName LIKE '%$searchTerm%'";
+					$result = mysqli_query($conn, $sql);
+				}
+			}
 			while($row = mysqli_fetch_assoc($result))
 			{
 				 echo "<tr>";
@@ -105,7 +116,7 @@
 					<div class='collapsible-header'>View More</div>
 					<div class='collapsible-body'><p>".$row['product_description']."</p></div>
 					</li></td>";
-				echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+				echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
 				echo "</tr>";
 			}
 			echo "</tbody>";
@@ -186,7 +197,4 @@
   
 
   </body>
-</html>
-
-
-
+</html>\z

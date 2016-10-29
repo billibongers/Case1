@@ -1,5 +1,9 @@
 <?php
 	session_start();
+	if(isset($_POST['submit']))
+	{
+		echo "yeah";
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -100,7 +104,7 @@
       <div class='collapsible-header'>View More</div>
       <div class='collapsible-body'><p>".$row['product_description']."</p></div>
     </li></td>";
-		    echo "<td><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></td>";
+		    echo "<td><button class='waves-effect waves-light btn' type='submit' name='submit'  id='contact' value=".$row['member_id']."'>Contact</button></td>";
 		  echo "</tr>";
 		  }
 	  ?>
