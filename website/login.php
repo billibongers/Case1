@@ -4,7 +4,7 @@
 		include("connect.php");
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		//$password = hash('sha256', $password);
+		$password = hash('sha256', $password);
 		
 		$sql = "SELECT * FROM members where username = '$username' AND password ='$password'";
 		$result = mysqli_query($conn, $sql);
