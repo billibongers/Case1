@@ -52,6 +52,7 @@
 
         <tbody> -->
 	<?php
+		$displayed = false;
 		if(!isset($_POST['search']))
 		{
 			echo	"<table class='striped'>";
@@ -96,31 +97,81 @@
 			echo "</thead>";
 			echo "<tbody>";
 			$result = mysqli_query($conn, $sql);
-			if(mysqli_num_rows($result) == 0)
+			if(mysqli_num_rows($result) != 0)
+			{
+				$displayed = true;
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo "<tr>";
+					echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
+					echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
+						<li>
+						<div class='collapsible-header'>View More</div>
+						<div class='collapsible-body'><p>".$row['product_description']."</p></div>
+						</li></td>";
+					echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
+					echo "</tr>";
+				}
+			}
+			else
 			{
 				$sql = "SELECT * FROM adverts WHERE category LIKE '%$searchTerm%'";
 				$result = mysqli_query($conn, $sql);
 				
-				if(mysqli_num_rows($result) == 0)
+				if(mysqli_num_rows($result) != 0)
 				{
+					$displayed = true;
+					while($row = mysqli_fetch_assoc($result))
+					{
+						echo "<tr>";
+						echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
+						echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
+							<li>
+							<div class='collapsible-header'>View More</div>
+							<div class='collapsible-body'><p>".$row['product_description']."</p></div>
+							</li></td>";
+						echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
+						echo "</tr>";
+					}
+				}
+				else
+				{
+				
 					$sql = "SELECT * FROM members WHERE UserName LIKE '%$searchTerm%'";
 					$result = mysqli_query($conn, $sql);
+					if(mysqli_num_rows($result) != 0)
+					{
+						$displayed = true;
+						while($row = mysqli_fetch_assoc($result))
+						{
+							$id = $row['member_id'];
+							echo $id;
+							$sql2 = "SELECT * FROM adverts WHERE member_id = '$id'";
+							$result2 = mysqli_query($conn, $sql2);
+							echo mysqli_num_rows($result);
+							
+							while($row2 = mysqli_fetch_assoc($result2))
+							{
+								echo "<tr>";
+								echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
+								echo "<td>Product Name: ".$row2['name']."<br>Price: R".$row2['price']."<ul class='collapsible' data-collapsible='accordion'>
+									<li>
+									<div class='collapsible-header'>View More</div>
+									<div class='collapsible-body'><p>".$row2['product_description']."</p></div>
+									</li></td>";
+								echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row2['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row2['member_id']."'>Contact</button></form></td>";
+								echo "</tr>";
+							}
+							
+						}
+					}
 				}
-			}
-			while($row = mysqli_fetch_assoc($result))
-			{
-				 echo "<tr>";
-				echo "<td><img width=150 height=150 alt='Unable to View' src = '".$row['location']."'></td>";
-				echo "<td>Product Name: ".$row['name']."<br>Price: R".$row['price']."<ul class='collapsible' data-collapsible='accordion'>
-					<li>
-					<div class='collapsible-header'>View More</div>
-					<div class='collapsible-body'><p>".$row['product_description']."</p></div>
-					</li></td>";
-				echo "<td><form class='col s12' method='post' action='sellerProfile.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
-				echo "</tr>";
 			}
 			echo "</tbody>";
 			echo "</table>";
+			
+			if(!$displayed)
+				echo "No search results";
 		}
 	  ?>
         </tbody>
