@@ -2,12 +2,13 @@
 	session_start();
 	if(isset($_POST['submit']))
 	{
+		
 		include("connect.php");
 		$productName = $_POST['productname'];
 		$productPrice = $_POST['price'];
 		$description = $_POST['description'];
 		$condition = $_POST['condition'];
-		$category = "SUV";
+		$category = $_POST['cat'];
 		$id = $_SESSION["id"];
 		echo $productName;
 		echo $productPrice;
@@ -64,6 +65,27 @@
           <label for="price">Price</label>
         </div>
       </div>
+          <div class="input-field col s12">
+    <select  name="cat" id="cat">
+      <option value="" disabled selected>Choose your category</option>
+      <?php
+		include("connect.php");
+		$sql = "SELECT * FROM categories";
+		$result = mysqli_query($conn, $sql);
+		while($row = mysqli_fetch_assoc($result))
+			echo "<option value=".$row['category'].">".$row['category']."</option>";
+
+      ?>
+    </select>
+    <label>Materialize Select</label>
+  </div>
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script type="text/javascript" src="js/materialize.min.js"></script>
+  <script>
+     $(document).ready(function() {
+        $('select').material_select();
+    });
+  </script>
       <div class="row">
         <div class="input-field col s12">
           <input id="description" name="description" type="text" class="validate">
@@ -84,29 +106,6 @@
       <div class="file-path-wrapper">
         <input class="file-path validate" type="text" placeholder="Upload image of product">
       </div>
-    </div>
-      <div>
-      <p>Category</p>
-	<p>
-      <input name="group1" type="radio" id="test1" />
-      <label for="test1">SUV</label>
-    </p>
-    <p>
-      <input name="group1" type="radio" id="test2" />
-      <label for="test2">Sedan</label>
-    </p>
-     <p>
-      <input name="group1" type="radio" id="test3" />
-      <label for="test3">Hatch</label>
-    </p>
-      <p>
-      <input name="group1" type="radio" id="test4" />
-      <label for="test4">Bike</label>
-    </p>
-      <p>
-      <input name="group1" type="radio" id="test5" />
-      <label for="test5">Bakkie</label>
-    </p>
     </div>
       <button class="waves-effect waves-light btn" type="submit" name="submit">submit<i class="material-icons right">send</i></button>
 </div>
