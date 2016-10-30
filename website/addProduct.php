@@ -31,7 +31,7 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
-  <title>Sign Up</title>
+  <title>Add Product</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -41,6 +41,27 @@
 <body>
   <nav class="red" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
+    <ul class="right hide-on-med-and-down">
+        <li><a href="logout.php">Log out</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="profile.php">Profile</a></li>
+      </ul>
+       <ul class="right hide-on-med-and-down">
+        <li><a href="home.php">Home</a></li>
+      </ul>
+      <ul class="right hide-on-med-and-down">
+    <form method="post">
+          <div class="input-field">
+              <input id="search" type="search" name="search" required>
+              <label for="search"><i class="material-icons">search</i></label>
+              <i class="material-icons">close</i>
+          </div>
+        </form>
+  </ul>
       <ul id="nav-mobile" class="side-nav">
         <li><a href="#">Navbar Link</a></li>
       </ul>

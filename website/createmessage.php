@@ -50,8 +50,8 @@
 		<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
-		$rec_id = 9;
-		
+		$rec_id = $_POST['poster_id'];
+
 		// Getting senders information
 		$sql="SELECT FirstName FROM members where member_id='$id'";
 		$result = mysqli_query($conn, $sql);

@@ -71,11 +71,12 @@
 		
 			echo  "Name: ".$row['FirstName']." ".$row['LastName'];
 			echo "<br>";
-			echo "Address: ".$row['Address'];
-			echo "<br>";
-			echo "Contact No: ".$row['ContactNo'];
-			echo "<br>";
 			echo "Email: ".$row['Url'];
+      echo "<br>";
+      echo "Address: ".$row['Address'];
+      echo "<br>";
+      echo "Contact No: ".$row['ContactNo'];
+
 		?>
 	</div>
   <div>
