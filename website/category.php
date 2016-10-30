@@ -49,12 +49,45 @@
       </div>
       <button class="waves-effect waves-light btn" type="submit" name="submit">submit<i class="material-icons right">send</i></button>
     </form>
+    <div>
+		 <?php
+	
+	echo	"<table class='striped'>";
+	echo "<thead>";
+	echo "<tr>";
+	echo  "<th data-field='id'>Category</th>";
+	echo "<th data-field='price'>Delete</th>";
+     
+	echo "</tr>";
+	echo "</thead>";
+
+	echo "<tbody>";
+	include("connect.php");
+	$id = $_SESSION["id"];
+	$sql = "SELECT * FROM categories";
+	$result = mysqli_query($conn, $sql);
+	while($row = mysqli_fetch_assoc($result))
+	{
+		
+		echo "<tr>";
+		echo "<td>".$row['category']."</td>";
+		echo "<td><form class='col s12' method='post' action='deletecategory.php'><input type='hidden' value=".$row['id']." name='delete_cat' id='delete_cat'><button class='waves-effect waves-light btn' type='submit' name=".$row['id']."'>Delete</button></form></td>";
+		echo "</tr>";
+	}
+		
+	echo "</tbody>";
+	echo "</table>";
+	
+
+	  ?>
+      </div>
   </div>
       </div>
      <!-- <div class="row center">
         <a href="http://materializecss.com/getting-started.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
       </div> -->
       <br><br>
+      
 
     </div>
   </div>
