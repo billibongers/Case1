@@ -15,15 +15,12 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="admin.php" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
-      </ul>
-        <ul class="right hide-on-med-and-down">
-        <li><a href="profile.php">Profile</a></li>
-      </ul>
+	</ul>
        <ul class="right hide-on-med-and-down">
-        <li><a href="home.php">Home</a></li>
+        <li><a href="admin.php">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
 		<form method="post">
@@ -65,12 +62,14 @@
               echo  "<th data-field='id'>Last Name</th>";
               echo  "<th data-field='name'>Email</th>";
               echo "<th data-field='price'>Delete</th>";
+         //     echo "<th data-field='price'>Edit</th>";
 		echo "</tr>";
        echo "</thead>";
 
        echo "<tbody>";
 				include("connect.php");
-				$sql = "SELECT * FROM members";
+				$id = $_SESSION["id"];
+				$sql = "SELECT * FROM members WHERE member_id<>'$id'";
 				$result = mysqli_query($conn, $sql);
 				while($row = mysqli_fetch_assoc($result))
 				{
@@ -79,7 +78,8 @@
 				   echo "<td>".$row['FirstName']."</td>";
 				    echo "<td>".$row['LastName']."</td>";
 				    echo "<td>".$row['Url']."</td>";
-				echo "<td><form class='col s12' method='post' action='deleteuser.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+				echo "<td><form class='col s12' method='post' action='deleteuser.php'><input type='hidden' value=".$row['member_id']." name='delete_user' id='delete_user'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+				//echo "<td><form class='col s12' method='post' action=''><input type='hidden' value=".$row['member_id']." name='edit_user' id='edit_user'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
 				  echo "</tr>";
 				  }
 		}

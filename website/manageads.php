@@ -15,12 +15,12 @@
 </head>
 <body>
   <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="admin.php" class="brand-logo">Exclusive Cars</a>
+    <div class="nav-wrapper container"><a id="logo-container" href="home.php" class="brand-logo">Exclusive Cars</a>
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
        <ul class="right hide-on-med-and-down">
-        <li><a href="admin.php">Home</a></li>
+        <li><a href="home.php">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
 		<form method="post">
@@ -41,11 +41,97 @@
     <div class="container">
     <br><br>
 	<div>
-		<center>
-			<a href="manageusers.php" <button class="waves-effect waves-light btn" type="submit" name="submit">Users<i class="material-icons right">send</i></button></a>
-			<a href="manageads.php" <button class="waves-effect waves-light btn" type="submit" name="submit">Advertisements<i class="material-icons right">send</i></button></a>
-			 <a href="category.php" <button class="waves-effect waves-light btn" type="submit" name="submit">Categories<i class="material-icons right">send</i></button></a>
-		</center>
+	<!--	 <table class="striped">
+        <thead>
+          <tr>
+              <th data-field="id">Product Image</th>
+              <th data-field="name">Product Overview</th>
+              <th data-field="price">Contact Seller</th>
+          </tr>
+        </thead>
+
+        <tbody> -->
+	<?php
+		$displayed = false;
+		if(!isset($_POST['search']))
+		{
+			echo	"<table class='striped'>";
+			echo "<thead>";
+			echo "<tr>";
+              echo  "<th data-field='id'>Name</th>";
+              echo  "<th data-field='id'>Price</th>";
+              echo  "<th data-field='name'>Description</th>";
+              echo "<th data-field='price'>Condition</th>";
+              echo "<th data-field='price'>Category</th>";
+              echo "<th data-field='price'>Delete</th>";
+           //   echo "<th data-field='price'>Edit</th>";
+		echo "</tr>";
+       echo "</thead>";
+
+       echo "<tbody>";
+				include("connect.php");
+				$id = $_SESSION["id"];
+				$sql = "SELECT * FROM adverts";
+				$result = mysqli_query($conn, $sql);
+				while($row = mysqli_fetch_assoc($result))
+				{
+       
+				 echo "<tr>";
+				   echo "<td>".$row['name']."</td>";
+				    echo "<td>".$row['price']."</td>";
+				    echo "<td>".$row['product_description']."</td>";
+				    echo "<td>".$row['product_condition']."</td>";
+				    echo "<td>".$row['category']."</td>";
+				echo "<td><form class='col s12' method='post' action='deletead.php'><input type='hidden' value=".$row['id']." name='delete_ad' id='delete_ad'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+			//	echo "<td><form class='col s12' method='post' action=''><input type='hidden' value=".$row['id']." name='edit_add' id='edit_add'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+				  echo "</tr>";
+				  }
+		}
+		else
+		{
+			include("connect.php");
+			$searchTerm = $_POST['search'];
+			$sql = "SELECT * FROM adverts WHERE name LIKE '%$searchTerm%'";
+			
+			echo	"<table class='striped'>";
+			echo "<thead>";
+			echo "<tr>";
+			echo  "<th data-field='id'>Name</th>";
+		      echo  "<th data-field='id'>Price</th>";
+		      echo  "<th data-field='name'>Description</th>";
+		      echo "<th data-field='price'>Condition</th>";
+		      echo "<th data-field='price'>Category</th>";
+		      echo "<th data-field='price'>Delete</th>";
+		      echo "<th data-field='price'>Edit</th>";
+			echo "</tr>";
+			echo "</thead>";
+			echo "<tbody>";
+			$result = mysqli_query($conn, $sql);
+			if(mysqli_num_rows($result) != 0)
+			{
+				$displayed = true;
+				while($row = mysqli_fetch_assoc($result))
+				{
+					echo "<tr>";
+					echo "<td>".$row['name']."</td>";
+					echo "<td>".$row['price']."</td>";
+					echo "<td>".$row['product_description']."</td>";
+					echo "<td>".$row['product_condition']."</td>";
+					echo "<td>".$row['category']."</td>";
+					echo "<td><form class='col s12' method='post' action='deleteadd.php'><input type='hidden' value=".$row['id']." name='delete_add' id='delete_add'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+					echo "<td><form class='col s12' method='post' action=''><input type='hidden' value=".$row['id']." name='edit_add' id='edit_add'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+					echo "</tr>";
+				}
+			}
+			echo "</tbody>";
+			echo "</table>";
+			
+			if(!$displayed)
+				echo "No search results";
+		}
+	  ?>
+        </tbody>
+      </table>
 	</div>
   </div>
    <div id="modal1" class="modal">
