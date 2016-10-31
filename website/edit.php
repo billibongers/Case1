@@ -13,6 +13,7 @@
 		$con = $_POST['num'];
 		$id = $_SESSION["id"];
     $interests = $_SESSION["interests"]; 
+    $picture = $_SESSION["propic"];
 		
 		//echo $email;
 		
@@ -60,7 +61,7 @@
 
     if($interests != '')
     {
-      $sql = "UPDATE members SET Interests = '$interests' WHERE member_id='$id'";
+      $sql = "UPDATE members SET interests = '$interests' WHERE member_id='$id'";
       $result = mysqli_query($conn, $sql);
     }
 		

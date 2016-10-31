@@ -8,12 +8,10 @@
 		$password = $_POST['password'];
 		$password = hash('sha256', $password);
 		$email = $_POST['email'];
-		$address = $_POST['address'];
-		$con = $_POST['num'];
 		
 		//echo $email;
 		
-		$sql = "INSERT INTO members (UserName, Password, FirstName, LastName, Address, ContactNo, Url) VALUES ('$username', '$password', '$firstName', '$lastName', '$address', '$con',  '$email')";
+		$sql = "INSERT INTO members (UserName, Password, FirstName, LastName, Url) VALUES ('$username', '$password', '$firstName', '$lastName', '$email')";
 		$result = mysqli_query($conn, $sql);
 		
 		if($result)
@@ -75,18 +73,6 @@
         <div class="input-field col s12">
           <input id="password" name="password" type="password" class="validate">
           <label for="password">Password</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="address" name="address" type="text" class="validate">
-          <label for="address">Address</label>
-        </div>
-      </div>
-      <div class="row">
-        <div class="input-field col s12">
-          <input id="num" name="num" type="text" class="validate">
-          <label for="num">Contact No</label>
         </div>
       </div>
       <div class="row">
