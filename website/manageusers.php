@@ -62,7 +62,7 @@
               echo  "<th data-field='id'>Last Name</th>";
               echo  "<th data-field='name'>Email</th>";
               echo "<th data-field='price'>Delete</th>";
-         //     echo "<th data-field='price'>Edit</th>";
+              echo "<th data-field='price'>Edit</th>";
 		echo "</tr>";
        echo "</thead>";
 
@@ -79,7 +79,7 @@
 				    echo "<td>".$row['LastName']."</td>";
 				    echo "<td>".$row['Url']."</td>";
 				echo "<td><form class='col s12' method='post' action='deleteuser.php'><input type='hidden' value=".$row['member_id']." name='delete_user' id='delete_user'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
-				//echo "<td><form class='col s12' method='post' action=''><input type='hidden' value=".$row['member_id']." name='edit_user' id='edit_user'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+				echo "<td><form class='col s12' method='post' action='adminedit.php'><input type='hidden' value=".$row['member_id']." name='edit_user' id='edit_user'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Edit</button></form></td>";
 				  echo "</tr>";
 				  }
 		}
