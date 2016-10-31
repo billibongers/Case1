@@ -1,13 +1,13 @@
 <?php
 	session_start();
-	//$_SESSION["username"] = $_POST['edit_user'];
+	
 	//echo $_SESSION["editAdmin"];
-	if(isset($_POST['submit']))
+	if(isset($_POST['edit_user']))
 	{
-		
-		echo $_POST['testing'];
-		echo "nah";
+		$_SESSION["edit_id"] = $_POST['edit_user'];
+		echo $_SESSION["edit_id"]; 
 	}
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -46,7 +46,7 @@
     <div class="container">
     <br><br>
        <div class="row">
-    <form class="col s12" method="post" action="">
+    <form class="col s12" method="post" action="temp.php">
       <div class="row">
         <div class="input-field col s6">
           <input placeholder="Leave empty if you don't want to change" id="first_name" name="first_name" type="text" class="validate">
@@ -103,7 +103,7 @@
       </div>
     </div>
     <?php
-	echo "<input type='hidden' value=".$_POST['adminEdit']." name='testing' id='testing'>";
+	echo "<input type='hidden' value=".$_SESSION["edit_id"]." name='testing' id='testing'>";
     ?>
       <button class="waves-effect waves-light btn" type="submit" name="submit">submit<i class="material-icons right">send</i></button>
     </form>

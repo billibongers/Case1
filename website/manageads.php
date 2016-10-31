@@ -64,7 +64,7 @@
               echo "<th data-field='price'>Condition</th>";
               echo "<th data-field='price'>Category</th>";
               echo "<th data-field='price'>Delete</th>";
-           //   echo "<th data-field='price'>Edit</th>";
+             echo "<th data-field='price'>Edit</th>";
 		echo "</tr>";
        echo "</thead>";
 
@@ -75,16 +75,15 @@
 				$result = mysqli_query($conn, $sql);
 				while($row = mysqli_fetch_assoc($result))
 				{
-       
-				 echo "<tr>";
-				   echo "<td>".$row['name']."</td>";
-				    echo "<td>".$row['price']."</td>";
-				    echo "<td>".$row['product_description']."</td>";
-				    echo "<td>".$row['product_condition']."</td>";
-				    echo "<td>".$row['category']."</td>";
-				echo "<td><form class='col s12' method='post' action='deletead.php'><input type='hidden' value=".$row['id']." name='delete_ad' id='delete_ad'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
-			//	echo "<td><form class='col s12' method='post' action=''><input type='hidden' value=".$row['id']." name='edit_add' id='edit_add'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
-				  echo "</tr>";
+					echo "<tr>";
+					echo "<td>".$row['name']."</td>";
+					echo "<td>".$row['price']."</td>";
+					echo "<td>".$row['product_description']."</td>";
+					echo "<td>".$row['product_condition']."</td>";
+					echo "<td>".$row['category']."</td>";
+					echo "<td><form class='col s12' method='post' action='deletead.php'><input type='hidden' value=".$row['id']." name='delete_ad' id='delete_ad'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Delete</button></form></td>";
+					echo "<td><form class='col s12' method='post' action='admineditad.php'><input type='hidden' value=".$row['id']." name='edit_ad' id='edit_ad'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Edit</button></form></td>";
+					echo "</tr>";
 				  }
 		}
 		else
