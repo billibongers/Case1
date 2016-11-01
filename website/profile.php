@@ -47,17 +47,18 @@
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
     </div>
   </nav>
-  <center>
-	<div>
+  	<div style="text-align: right">
 		<?php
 		include("connect.php");
 		$id = $_SESSION["id"];
 		$sql = "SELECT * FROM members WHERE member_id='$id'";
 		$result = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_assoc($result);
-			echo "<img alt='No Image' src=".$row['location']." />"
+			echo "<img alt='No Image' width=150 height=150 style='position: relative; left:180px' src=".$row['Image']." />"
 		?>
 	</div>
+  <center>
+
 	<div>
 		  <a class="waves-effect waves-light btn-large" href="edit.php">Edit profile information</a>
 	</div>
