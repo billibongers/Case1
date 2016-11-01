@@ -63,7 +63,7 @@
 
 	echo "<tbody>";
 	include("connect.php");
-	$id = $_SESSION["id"];
+	//$id = $_SESSION["id"];
 	$sql = "SELECT * FROM categories";
 	$result = mysqli_query($conn, $sql);
 	while($row = mysqli_fetch_assoc($result))
