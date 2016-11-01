@@ -42,10 +42,14 @@
 							</div>
 						</form>
 			</ul>
-		      <ul id="nav-mobile" class="side-nav">
-			<li><a href="#">Navbar Link</a></li>
-		      </ul>
-		      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+		     <ul id="nav-mobile" class="side-nav">
+		<li><a href="#">Exclusive Cars</a></li>;
+	  <li><a href="home.php">Home</a></li>";
+	  <li><a href="profile.php">Profile</a></li>";
+	  <li><a href="receivedMessage.php">Messages</a></li>";
+	  <li><a href="wishlist.php">Wishlist</a></li>";
+			</ul>
+		<a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
 		</div>
 	  </nav>';
 ?>
