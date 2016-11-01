@@ -20,7 +20,7 @@
         <li><a href="logout.php">Log out</a></li>
       </ul>
        <ul class="right hide-on-med-and-down">
-        <li><a href="home.php">Home</a></li>
+        <li><a href="admin.php">Home</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
 		<form method="post">
