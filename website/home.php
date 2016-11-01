@@ -19,8 +19,14 @@
       <ul class="right hide-on-med-and-down">
         <li><a href="logout.php">Log out</a></li>
       </ul>
+	  <ul class="right hide-on-med-and-down">
+        <li><a href="likes.php"><i class="material-icons">thumb_up</i></a></li>
+      </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="receivedMessage.php"><i class="material-icons">chat_bubble_outline</i></a></li>
+      </ul>
+	   <ul class="right hide-on-med-and-down">
+        <li><a href="wishlist.php">Wishlist</a></li>
       </ul>
       <ul class="right hide-on-med-and-down">
         <li><a href="profile.php">Profile</a></li>
@@ -91,7 +97,14 @@
 		      <div class='collapsible-body'><p>".$row['product_description']."</p></div>
 		    </li></td>";
 				   echo "<td><form class='col s12' method='post' action='createmessage.php'><input type='hidden' value=".$row['member_id']." name='poster_id' id='poster_id'><button class='waves-effect waves-light btn' type='submit' name=".$row['member_id']."'>Contact</button></form></td>";
-				  echo "</tr>";
+					echo "<td><form class='col s12' method='post' action='wishlist.php'>
+						<input type='hidden' value=".$row['name']." name='nameOfProduct'>
+						<input type='hidden' value=".$row['member_id']." name='userPostILike'>
+						<input type='hidden' value=".$row['price']." name='price'>
+					<button type='submit' ><i class='material-icons'>thumb_up</i></button>
+					
+					</form></td>";
+				 echo "</tr>";
 				  }
 		}
 		else
