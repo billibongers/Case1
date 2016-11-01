@@ -3,17 +3,37 @@
 	if(isset($_POST['submit']))
 	{
 		include("connect.php");
+		$uploadSuccess = false;
 		$firstName = $_POST['first_name'];
 		$lastName = $_POST['last_name'];
 		$username = $_POST['username'];
 		$password = $_POST['password'];
-		$password = hash('sha256', $password);
+		if($password != '')
+			$password = hash('sha256', $password);
 		$email = $_POST['email'];
 		$address = $_POST['address'];
 		$con = $_POST['num'];
 		$id = $_SESSION["id"];
-    $interests = $_SESSION["interests"]; 
-    $picture = $_SESSION["propic"];
+		$interests = $_SESSION["interests"]; 
+		$picture = $_SESSION["propic"];
+    
+		$errors = array();
+		$file_name = $_FILES['propic']['name'];
+		$file_size = $_FILES['propic']['size'];
+		$file_tmp = $_FILES['propic']['tmp_name'];
+		$file_type = $_FILES['propic']['type'];
+	//	$file_ext = strlower(end(explode('.', $_FILES['propic']['name'])));
+		
+	//	$expensions = array("jpeg", "jpg","png");
+	//	if(in_array($file_ext, $expensions) === false)
+	//	{
+	//	}
+		
+		if(empty($errors)==true)
+		{
+			move_uploaded_file($file_tmp, "pics/".$file_name);
+			$uploadSuccess = true;
+		}
 		
 		//echo $email;
 		
@@ -37,6 +57,7 @@
 		
 		if($password != '')
 		{
+			echo "<script>alert($password);</script>";
 			$sql = "UPDATE members SET Password = '$password' WHERE member_id='$id'";
 			$result = mysqli_query($conn, $sql);
 		}
@@ -59,15 +80,21 @@
 			$result = mysqli_query($conn, $sql);
 		}
 
-    if($interests != '')
-    {
-      $sql = "UPDATE members SET interests = '$interests' WHERE member_id='$id'";
-      $result = mysqli_query($conn, $sql);
-    }
+		    if($interests != '')
+		    {
+		      $sql = "UPDATE members SET interests = '$interests' WHERE member_id='$id'";
+		      $result = mysqli_query($conn, $sql);
+		    }
+		    
+			if($uploadSuccess)
+			{
+			     $sql = "UPDATE members SET Image = 'pics/".$file_name."' WHERE member_id='$id'";
+			     $result = mysqli_query($conn, $sql);
+			}
 		
 		
 		
-		if($result)
+		//if($result)
 			header("location: profile.php");
 		
 		
@@ -110,7 +137,7 @@
     <div class="container">
     <br><br>
        <div class="row">
-    <form class="col s12" method="post" action="">
+    <form class="col s12" method="post" action="" enctype="multipart/form-data">
       <div class="row">
         <div class="input-field col s6">
           <input placeholder="Leave empty if you don't want to change" id="first_name" name="first_name" type="text" class="validate">

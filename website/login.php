@@ -16,7 +16,10 @@
 				session_start();
 				$_SESSION["id"] = $row['member_id'];
 				$_SESSION["username"] = $row['UserName'];
-				header("location: home.php");
+				if($_SESSION["username"] == "admin")
+					header("location: admin.php");
+				else
+					header("location: home.php");
 			}
 			else
 				echo "Login Failed Try again";

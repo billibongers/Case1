@@ -10,14 +10,27 @@
 		$condition = $_POST['condition'];
 		$category = $_POST['cat'];
 		$id = $_SESSION["id"];
-		echo $productName;
-		echo $productPrice;
-		echo $description;
-		echo $condition;
-		echo $category;
-		echo $id;
 		
-		$sql = "INSERT INTO adverts (name, price, member_id, product_condition, product_description, category) VALUES ('$productName', '$productPrice' , '$id', '$condition', '$description', '$category')";
+		$errors = array();
+		$file_name = $_FILES['image']['name'];
+		echo $file_name;
+		$file_size = $_FILES['image']['size'];
+		$file_tmp = $_FILES['image']['tmp_name'];
+		$file_type = $_FILES['image']['type'];
+	//	$file_ext = strlower(end(explode('.', $_FILES['propic']['name'])));
+		
+	//	$expensions = array("jpeg", "jpg","png");
+	//	if(in_array($file_ext, $expensions) === false)
+	//	{
+	//	}
+		
+		if(empty($errors)==true)
+		{
+			move_uploaded_file($file_tmp, "pics/".$file_name);
+			$uploadSuccess = true;
+		}
+		
+		$sql = "INSERT INTO adverts (name, price, location, member_id, product_condition, product_description, category) VALUES ('$productName', '$productPrice' , 'pics/".$file_name."', '$id', '$condition', '$description', '$category')";
 		$result = mysqli_query($conn, $sql);
 		echo "here";
 		
@@ -73,8 +86,8 @@
     <div class="container">
     <br><br>
        <div class="row">
-    <form class="col s12" method="post" action="">
-    <div class="row">
+    <form class="col s12" method="post" action="" enctype="multipart/form-data">
+    <div class="row"> 
         <div class="input-field col s12">
           <input id="productname" name="productname" type="text" class="validate">
           <label for="password">Product Name</label>
