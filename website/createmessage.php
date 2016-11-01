@@ -1,4 +1,5 @@
 <?php
+	//include("goHome.php");
 	session_start();
 	include("connect.php");
 ?>
@@ -51,7 +52,8 @@
 		include("connect.php");
 		$id = $_SESSION["id"];
 		$rec_id = $_POST['poster_id'];
-
+		$_SESSION['hi'] = $_POST['poster_id'];
+		//echo $rec_id;
 		// Getting senders information
 		$sql="SELECT FirstName FROM members where member_id='$id'";
 		$result = mysqli_query($conn, $sql);
@@ -68,7 +70,7 @@
 	</div>
 	   
   <div class="row">
-    <form class="col s12" name="" method="post">
+    <form class="col s12" action="messageSent.php" name="" method="post">
 	<div class="input-field col s3"></div>
       <div class="row">
         <div class="input-field col s3">
@@ -78,6 +80,9 @@
         <div class="input-field col s3">
           <input id="first_name" value=<?php echo $receiver?> type="text" class="validate">
           <label for="last_name">To</label>
+        </div>
+	<div class="input-field col s3">
+         <?php echo "<input type='hidden' value=".$rec_id." name='idSent' id='poster_id'>";?>
         </div>
       </div>
       <div class="row">
@@ -90,18 +95,7 @@
 			<div class="input-field col s3"></div>
 		  </div>
       <button class='waves-effect waves-light btn' type='submit' name="send">Send</button>
-      	<?php 
-				
-				if (isset($_POST['send'])){
-					$from = $id;
-					$sendto = $rec_id;
-					$message = $_POST['message'];
-					mysqli_query($conn, "INSERT INTO messages (receiver, recipient, datetime, content, status)
-								VALUES ('$from','$sendto',NOW(),'$message','unread')")or die(mysql_error());
-								header('location:messageSent.php');
-								
-				}
-		?>
+
     </form>
   </div>
         

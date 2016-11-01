@@ -1,4 +1,5 @@
 <?php
+	include("goHome.php");
 	session_start();
 	include("connect.php");
 ?>
@@ -47,23 +48,25 @@
   </nav>
   <center>
 	<div>
-		<?php
-		include("connect.php");
-		/*$id = $_SESSION["id"];
-		$rec_id = 10;
+	
 		
-		// Getting senders information
-		$sql="SELECT FirstName FROM members where member_id='$id'";
-		$result = mysqli_query($conn, $sql);
-		$name = mysqli_fetch_assoc($result);
-		$sender = $name['FirstName'];
-		// Getting receivers information 
-		$sql="SELECT FirstName FROM members where member_id='$rec_id'";
-		$result = mysqli_query($conn, $sql);
-		$name = mysqli_fetch_assoc($result);
-		$receiver = $name['FirstName'];*/
-		
+	      	<?php 
+		include("connect.php");		
+				
+			if (isset($_POST['send'])){
+					$from = $_SESSION['id'];
+					$sendto = $_POST['idSent'];
+					//echo $sendto;
+					$message = $_POST['message'];
+					//echo $message;
+					mysqli_query($conn, "INSERT INTO messages (receiver, recipient, datetime, content, status)
+								VALUES ('$from','$sendto',NOW(),'$message','unread')")or die(mysql_error());
+								//header('location:messageSent.php');
+								
+				}
 		?>
+		
+	
 		
 	</div>
 	   

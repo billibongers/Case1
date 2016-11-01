@@ -1,4 +1,5 @@
 <?php
+	include("goHome.php");
 	session_start();
 	include("connect.php");
 ?>
@@ -67,7 +68,7 @@
 	</div>
 	   
   <div class="row">
-    
+    </br>
       	<?php 
 				
 				$member_id = $_SESSION['id'];
