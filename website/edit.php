@@ -1,4 +1,5 @@
 <?php
+	include("goHome.php");
 	session_start();
 	if(isset($_POST['submit']))
 	{
@@ -140,17 +141,38 @@
     <form class="col s12" method="post" action="" enctype="multipart/form-data">
       <div class="row">
         <div class="input-field col s6">
-          <input placeholder="Leave empty if you don't want to change" id="first_name" name="first_name" type="text" class="validate">
+         <?php 
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		echo "<input placeholder='".$row['FirstName']."' id='first_name' name='first_name' type='text' class='validate'>"
+	 ?>
           <label for="first_name">First Name</label>
         </div>
         <div class="input-field col s6">
-          <input placeholder="Leave empty if you don't want to change" id="last_name" name="last_name" type="text" class="validate">
+	<?php
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		echo "<input placeholder='".$row['LastName']."' id='last_name' name='last_name' type='text' class='validate'>";
+	  ?>
           <label for="last_name">Last Name</label>
         </div>
       </div>
     <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Leave empty if you don't want to change" id="username" name="username" type="text" class="validate">
+	<?php
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		echo "<input placeholder='".$row['UserName']."' id='username' name='username' type='text' class='validate'>";
+	  ?>
           <label for="password">Username</label>
         </div>
       </div>
@@ -162,19 +184,40 @@
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Leave empty if you don't want to change" id="address" name="address" type="text" class="validate">
+	<?php
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		echo "<input placeholder='".$row['Address']."' id='address' name='address' type='text' class='validate'>";
+	  ?>
           <label for="address">Address</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Leave empty if you don't want to change" id="num" name="num" type="text" class="validate">
+	<?php 
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		echo "<input placeholder='".$row['ContactNo']."' id='num' name='num' type='text' class='validate'>";
+	?>
           <label for="num">Contact No</label>
         </div>
       </div>
       <div class="row">
         <div class="input-field col s12">
-          <input placeholder="Leave empty if you don't want to change" id="email" name="email" type="email" class="validate">
+         <?php 
+		include("connect.php");
+		$id = $_SESSION["id"];
+		$sql = "SELECT * FROM members WHERE member_id='$id'";
+		$result = mysqli_query($conn, $sql);
+		$row = mysqli_fetch_assoc($result);
+		echo "<input placeholder='".$row['Url']."' id='email' name='email' type='email' class='validate'>";
+	 ?>
           <label for="email">Email</label>
         </div>
       </div>
@@ -196,7 +239,11 @@
       <button class="waves-effect waves-light btn" type="submit" name="submit">submit<i class="material-icons right">send</i></button>
     </form>
   </div>
+  <div>
+		  <a class="waves-effect waves-light btn-large" href="delete.php">Delete Profile</a>
+	</div>
       </div>
+      
       <br><br>
 
     </div>
