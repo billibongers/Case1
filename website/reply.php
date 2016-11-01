@@ -15,36 +15,7 @@
   <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
 </head>
 <body>
-  <nav class="red" role="navigation">
-    <div class="nav-wrapper container"><a id="logo-container" href="index.html" class="brand-logo">Exclusive Cars</a>
-      <ul class="right hide-on-med-and-down">
-        <li><a href="logout.php">Log out</a></li>
-      </ul>
-       <ul class="right hide-on-med-and-down">
-        <li><a href="addProduct.php">Add Product</a></li>
-      </ul>
-        <ul class="right hide-on-med-and-down">
-        <li><a href="profile.php">Profile</a></li>
-      </ul>
-	   </ul>
-        <ul class="right hide-on-med-and-down">
-        <li><a href="home.php">Home</a></li>
-      </ul>
-      <ul class="right hide-on-med-and-down">
-		<form method="post">
-					<div class="input-field">
-						  <input id="search" type="search" name="search" required>
-						  <label for="search"><i class="material-icons">search</i></label>
-						  <i class="material-icons">close</i>
-					</div>
-				</form>
-	</ul>
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#">Navbar Link</a></li>
-      </ul>
-      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-    </div>
-  </nav>
+ <?php require "head.php"; ?>
   <center>
 	<div>
 		<?php
